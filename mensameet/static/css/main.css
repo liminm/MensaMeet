@@ -1,0 +1,51 @@
+body{
+    background-attachment: fixed;
+    background-color: antiquewhite;
+ }
+
+ a{
+    color:#999999;
+    text-decoration:none !important;
+ }
+
+ a:hover {
+    color:gray;
+    text-decoration:none !important;
+ }
+
+ .login-form {
+    margin-top:5%;
+    padding: 40px;
+    background-color: #ffffff;
+    /* pacity:0.7; */
+    border-radius: 30px;
+    outline: 0;
+    max-width: 500px;
+    min-width: 400px;
+ }
+
+ .submit-btn {
+    border-radius:50px;
+    margin-top:10px;
+    margin-bottom:40px;
+ }
+ 
+ .icon {
+    content: url('../logo.png');
+    width:80px;
+    height:80px;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:10px;
+ }
+ 
+ .title {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 45px;
+    font-family: Pacifico; 
+    color: #000;
+    text-shadow: 5px 5px 5px #00000029;
+ }
