@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'mensameet_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ldgocuwz',
+        'USER': 'ldgocuwz',
+        'PASSWORD': 'wF3hLzwr_KQFpdiEUdMv055B5xyVSBWW',
+        'HOST': 'dumbo.db.elephantsql.com',
+        'PORT': '5432'
     }
 }
 
@@ -122,5 +126,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Where to redirect after login
+LOGIN_REDIRECT_URL = 'mensameet-home'
+
+# Where to redirect if trying to access a page, which requires login
+LOGIN_URL = 'mensameet-login'
+
 

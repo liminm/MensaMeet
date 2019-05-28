@@ -1,5 +1,8 @@
 {% extends 'mensameet/base.html' %}
 
+<!-- Necessary for the crispy form-->
+{% load crispy_forms_tags %}
+
 {% block content %}
 <div class="container">
       <div class="col-md-5 mx-auto">
@@ -7,6 +10,7 @@
                      <div class="icon"></div>
                      <div class="title text-center">MensaMeet</div>
 
+<!--
                <form action="" method="post" name="login">
                   <div class="form-group">
                      <label id="emailHelp" for="email">Email Adresse</label>
@@ -16,6 +20,9 @@
                      <label for="password" id="passwordHelp">Passwort</label>
                      <input type="password" name="password" id="password"  class="form-control" aria-describedby="passwordHelp" placeholder="Passwort eingeben">
                   </div>
+
+
+
                   <div class="form-group">
                      <p class="text-center">Du akzeptierst unsere <a href="#">Datenschutzrichtlinien</a></p>
                   </div>
@@ -24,9 +31,29 @@
                   </div>
                   <div class="form-group">
                      <p class="text-center">Noch kein Account? <a href="{% url 'mensameet-register' %}" id="signup">Registriere dich jetzt!</a></p>
-                     <!-- leite zur registration seite-->
                   </div>
                </form>
+
+-->
+
+                  <form method="POST">
+
+                     {% csrf_token %}
+                     <fieldset class="form-group">
+                        {{ form|crispy }}
+                     </fieldset>
+
+                     <div class="form-group">
+                        <p class="text-center">Du akzeptierst unsere <a href="#">Datenschutzrichtlinien</a></p>
+                     </div>
+                     <div class="col-md-12 text-center ">
+                        <button type="submit" class=" btn btn-block btn-secondary submit-btn">Anmelden</button>
+                     </div>
+                     <div class="form-group">
+                        <p class="text-center">Noch kein Account? <a href="{% url 'mensameet-register' %}" id="signup">Registriere dich jetzt!</a></p>
+                     </div>
+                  </form>
+
             </div>
       </div>
 </div>

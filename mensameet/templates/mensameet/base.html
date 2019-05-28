@@ -16,16 +16,21 @@
       <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap&subset=latin-ext" rel="stylesheet">
    </head>
    <body>
-    <main role="main" class="container">
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
 
-          {% block content %}{% endblock %}
+    {% block navigation %}{% endblock %}
+    
+    <main role="main" class="container">
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% block content %}{% endblock %}
+
     </main>
    </body>
 </html>

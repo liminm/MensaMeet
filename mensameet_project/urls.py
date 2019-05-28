@@ -18,9 +18,14 @@ from django.urls import path, include
 from users import views as user_views
 from mensameet import views as mensameet_views
 
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
 	path('admin/', admin.site.urls),
-    path('home/', mensameet_views.home, name='mensameet-home'),
+    path('', mensameet_views.home, name='mensameet-home'),
 	path('register/', user_views.register, name='mensameet-register'),
-	path('', include('mensameet.urls')),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='mensameet-login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='mensameet-logout'),
+
+#	path('', include('mensameet.urls')),
 ]
