@@ -2,7 +2,7 @@
 name: Feature request - Frontend
 about: Suggest a frontend idea for this project
 title: ''
-labels: enhancement
+labels: Frontend, enhancement
 assignees: just-h, liminm, szoszk, vesela-stefanova
 
 ---

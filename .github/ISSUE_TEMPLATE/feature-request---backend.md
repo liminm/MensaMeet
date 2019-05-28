@@ -2,7 +2,7 @@
 name: Feature request - Backend
 about: Suggest a backend idea for this project
 title: ''
-labels: enhancement
+labels: Backend, enhancement
 assignees: akakream, int3grat0r, rezafbrn, todormoskov
 
 ---
