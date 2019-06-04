@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Topic
+from .models import Meetup
+from .models import Profile
 
-# Register your models here.
+admin.site.register(Topic)
+admin.site.register(Meetup)
+admin.site.register(Profile)
