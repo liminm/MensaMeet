@@ -2,7 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .models import Meetup
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 
 def register(request):
 	if request.method == 'POST':
@@ -36,3 +44,49 @@ def profile(request):
 		'p_form': p_form
 		}	
 	return render(request, 'users/profile.html', context)	
+
+
+class MeetupListView(ListView):
+	model = Meetup
+	template_name = 'users/ownmeetups.html'	
+	context_object_name = 'meetups'
+	ordering = ['-date_posted']
+
+class MeetupDetailView(DetailView):
+    model = Meetup
+
+
+class MeetupCreateView(LoginRequiredMixin, CreateView):
+	model = Meetup
+	fields = ['title', 'date', 'members', 'about']
+	success_url = '/mymeetups'
+	
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super().form_valid(form)
+
+
+class MeetupUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Meetup
+    fields = ['title', 'date', 'members', 'about']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        meetup = self.get_object()
+        if self.request.user == meetup.author:
+            return True
+        return False
+
+
+class MeetupDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Meetup
+    success_url = '/mymeetups'
+
+    def test_func(self):
+        meetup = self.get_object()
+        if self.request.user == meetup.author:
+            return True
+        return False

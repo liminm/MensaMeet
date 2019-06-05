@@ -1,0 +1,23 @@
+{% extends 'mensameet/base_with_navigation.html' %}
+
+<!-- Necessary for the crispy form-->
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% for meetup in meetups %}
+    <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ meetup.author.profile.image.url }}">
+    <div class="media-body">
+        <div class="article-metadata">
+        <a class="mr-2" href="#">{{ meetup.author }}</a>
+        <!--
+        <small class="text-muted">{{ meetup.date_posted|date:"F d, Y" }}</small>    
+        -->
+        </div>
+        <h2><a class="article-title" href="{% url 'meetup-detail' meetup.id %}">{{ meetup.title }}</a></h2>
+        <p class="article-content">{{ meetup.about }}</p>
+        <p class="article-content">{{ meetup.members }}</p>
+    </div>
+    </article>
+    {% endfor %}
+{% endblock content %}
