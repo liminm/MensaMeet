@@ -1,0 +1,25 @@
+{% extends 'mensameet/base_with_navigation.html' %}
+
+{% block content %}
+  <article class="media content-section">
+    <img class="rounded-circle article-img" alt="profile image" src="{{ object.author.profile.image.url }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ object.author }}</a>
+        <!--
+        <small class="text-muted">{{ meetup.date_posted|date:"F d, Y" }}</small>    
+        -->
+        {% if object.author == user %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'meetup-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'meetup-delete' object.id %}">Delete</a>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ object.title }}</h2>
+      <p class="article-content">{{ object.date }}</p>
+      <p class="article-content">{{ object.about }}</p>
+      <p class="article-content">{{ object.members }}</p>
+    </div>
+  </article>
+{% endblock content %}

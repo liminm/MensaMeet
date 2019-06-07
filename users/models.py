@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone 
 from django.contrib.auth.models import User
 from PIL import Image
+from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -36,8 +37,11 @@ class Meetup(models.Model):
     about = models.TextField(blank=True, null=True)
     date_posted = models.DateTimeField(default = timezone.now)
     #one to many relationship between meetups and users
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="mymeetups")
-    members = models.ManyToManyField(Profile, related_name="meetupsImin")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="mymeetups")
+    members = models.ManyToManyField(User, related_name="meetupsImin")
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('meetup-detail', kwargs={'pk': self.pk})    
