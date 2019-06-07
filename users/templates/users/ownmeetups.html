@@ -6,7 +6,7 @@
 {% block content %}
     {% for meetup in meetups %}
     <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ meetup.author.profile.image.url }}">
+    <img class="rounded-circle article-img" alt="profile image" src="{{ meetup.author.profile.image.url }}">
     <div class="media-body">
         <div class="article-metadata">
         <a class="mr-2" href="#">{{ meetup.author }}</a>
