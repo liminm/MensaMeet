@@ -46,8 +46,13 @@ def profile(request):
 	return render(request, 'users/profile.html', context)	
 
 
-class MeetupListView(ListView):
+class MeetupListView(LoginRequiredMixin, ListView):
 	model = Meetup
+
+	def get_queryset(self):
+		qs = Meetup.objects.filter(author=self.request.user)
+		return qs
+
 	template_name = 'users/ownmeetups.html'	
 	context_object_name = 'meetups'
 	ordering = ['-date_posted']
