@@ -1,6 +1,13 @@
 {% extends 'mensameet/base_with_navigation.html' %}
 
+
+
 {% block content %}
+<div class="form-group row" style="margin-top:20px;margin-bottom:20px;"> 
+<input class="form-control col-sm-10" id="myInput" type="text" placeholder="Filter Meetups" >
+<button type="button" class="btn btn-secondary" style="margin-left:15px;">
+Create New Meetup</button>
+</div>
 	<section id="events" class="shadow bg-white rounded p-3">
 		<h2>Title</h2>
 		<span class="date-time">Date & Time</span><br />
