@@ -4,11 +4,18 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.urls import reverse
 
+class Topic(models.Model):
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     gender = models.CharField(max_length=50, blank=True)
     about = models.TextField(blank=True, null=True)
+    topics = models.ManyToManyField(Topic, related_name="owners")
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -21,13 +28,6 @@ class Profile(models.Model):
             output_size = (500, 500)
             img.thumbnail(output_size)
             img.save(self.image.path)    
-        
-
-class Topic(models.Model):
-    title = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
 
 class Meetup(models.Model):
     title = models.CharField(max_length=100)
