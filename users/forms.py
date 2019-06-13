@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Topic
+from .models import Meetup, Topic, Profile
+
 
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField()
@@ -20,7 +21,27 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
-		fields = ['image', 'gender', 'about']			
+		fields = ['image', 'gender', 'about']
+
+class MeetupCreateForm(forms.ModelForm):
+	topics = forms.ModelMultipleChoiceField(
+			queryset = Topic.objects.all(),
+			widget = forms.CheckboxSelectMultiple,
+			required=True
+	)
+	class Meta:
+		model = Meetup
+		fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
+
+class MeetupUpdateForm(forms.ModelForm):
+	topics = forms.ModelMultipleChoiceField(
+			queryset = Topic.objects.all(),
+			widget = forms.CheckboxSelectMultiple,
+			required=True
+	)
+	class Meta:
+		model = Meetup
+		fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
 
 class TopicsUpdateForm(forms.ModelForm):
 	topics = forms.ModelMultipleChoiceField(
