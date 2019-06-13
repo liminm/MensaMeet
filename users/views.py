@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TopicsUpdateForm, MeetupCreateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TopicsUpdateForm, MeetupCreateForm, MeetupUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Meetup, Topic
 from django.views.generic import (
-		TemplateView,
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView
+	TemplateView,
+	ListView,
+	DetailView,
+	CreateView,
+	UpdateView,
+	DeleteView
 )
 
 def register(request):
@@ -63,7 +63,7 @@ class MeetupListView(LoginRequiredMixin, ListView):
 	ordering = ['-date_posted']
 
 class MeetupDetailView(DetailView):
-    model = Meetup
+	model = Meetup
 
 
 class MeetupCreateView(LoginRequiredMixin, CreateView):
@@ -103,26 +103,32 @@ class MeetupCreateView(LoginRequiredMixin, CreateView):
 		return context
 
 class MeetupUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Meetup
-    fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
+	model = Meetup
+	fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
+	
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super().form_valid(form)
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        meetup = self.get_object()
-        if self.request.user == meetup.author:
-            return True
-        return False
+	def test_func(self):
+		meetup = self.get_object()
+		if self.request.user == meetup.author:
+			return True
+		return False
+		
+	def get_context_data(self, **kwargs):
+		context = super(MeetupUpdateView, self).get_context_data(**kwargs)
+		form = MeetupUpdateForm(self.request.POST or None)
+		context["form"] = form
+		return context
 
 
 class MeetupDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Meetup
-    success_url = '/mymeetups'
+	model = Meetup
+	success_url = '/mymeetups'
 
-    def test_func(self):
-        meetup = self.get_object()
-        if self.request.user == meetup.author:
-            return True
-        return False
+	def test_func(self):
+		meetup = self.get_object()
+		if self.request.user == meetup.author:
+			return True
+		return False

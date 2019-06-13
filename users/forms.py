@@ -33,6 +33,15 @@ class MeetupCreateForm(forms.ModelForm):
 		model = Meetup
 		fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
 
+class MeetupUpdateForm(forms.ModelForm):
+	topics = forms.ModelMultipleChoiceField(
+			queryset = Topic.objects.all(),
+			widget = forms.CheckboxSelectMultiple,
+			required=True
+	)
+	class Meta:
+		model = Meetup
+		fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
 
 class TopicsUpdateForm(forms.ModelForm):
 	topics = forms.ModelMultipleChoiceField(
