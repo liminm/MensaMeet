@@ -67,7 +67,7 @@ class MeetupDetailView(DetailView):
 
 class MeetupCreateView(LoginRequiredMixin, CreateView):
 	model = Meetup
-	fields = ['title', 'date', 'members', 'about']
+	fields = ['title', 'date', 'about']
 	success_url = '/mymeetups'
 	
 	def form_valid(self, form):
