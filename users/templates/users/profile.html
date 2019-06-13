@@ -12,6 +12,7 @@
                 <p class="text-secondary">{{ user.email }}</p>
                 <p class="text-secondary">{{ user.profile.gender }}</p>
                 <p class="text-secondary">{{ user.profile.about }}</p>
+                <p class="text-secondary">{{ user.profile.topics }}</p>
             </div>
         </div>
         <form method="POST" enctype="multipart/form-data">
@@ -20,6 +21,7 @@
                 <legend class="border-bottom mb-4">Profile Info</legend>
                 {{ u_form|crispy }}
                 {{ p_form|crispy }}
+                {{ t_form|crispy }}
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Update</button>
