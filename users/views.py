@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TopicsUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TopicsUpdateForm, MeetupCreateForm, MeetupUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Meetup, Topic
 from django.views.generic import (
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView
+	TemplateView,
+	ListView,
+	DetailView,
+	CreateView,
+	UpdateView,
+	DeleteView
 )
 
 def register(request):
@@ -62,12 +63,12 @@ class MeetupListView(LoginRequiredMixin, ListView):
 	ordering = ['-date_posted']
 
 class MeetupDetailView(DetailView):
-    model = Meetup
+	model = Meetup
 
 
 class MeetupCreateView(LoginRequiredMixin, CreateView):
 	model = Meetup
-	fields = ['title', 'date', 'members', 'about']
+	fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
 	success_url = '/mymeetups'
 	
 	def form_valid(self, form):
@@ -75,27 +76,59 @@ class MeetupCreateView(LoginRequiredMixin, CreateView):
 		return super().form_valid(form)
 
 
+#class MeetupCreateView(TemplateView):
+#	template_name = "users/meetup_form.html"
+#
+#	def post(self, request, *args, **kwargs):
+#		context = self.get_context_data()
+#		if context["form"].is_valid():
+#			print ('yes done')
+#			form = context["form"]
+#			form.instance.author = self.request.user
+#			#meetup = form.save(commit = False)
+#			#meetup.save()
+#			for topic in Topic.objects.all():
+#				print(topic)
+#				#meetup.topic_set.add(topic)
+#			form.save()
+#
+#		return super(TemplateView, self).render_to_response(context)
+
+	def get_context_data(self, **kwargs):
+		context = super(MeetupCreateView, self).get_context_data(**kwargs)
+
+		form = MeetupCreateForm(self.request.POST or None)
+		context["form"] = form
+
+		return context
+
 class MeetupUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Meetup
-    fields = ['title', 'date', 'members', 'about']
+	model = Meetup
+	fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
+	
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super().form_valid(form)
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        meetup = self.get_object()
-        if self.request.user == meetup.author:
-            return True
-        return False
+	def test_func(self):
+		meetup = self.get_object()
+		if self.request.user == meetup.author:
+			return True
+		return False
+		
+	def get_context_data(self, **kwargs):
+		context = super(MeetupUpdateView, self).get_context_data(**kwargs)
+		form = MeetupUpdateForm(instance=self.get_object())
+		context["form"] = form
+		return context
 
 
 class MeetupDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Meetup
-    success_url = '/mymeetups'
+	model = Meetup
+	success_url = '/mymeetups'
 
-    def test_func(self):
-        meetup = self.get_object()
-        if self.request.user == meetup.author:
-            return True
-        return False
+	def test_func(self):
+		meetup = self.get_object()
+		if self.request.user == meetup.author:
+			return True
+		return False

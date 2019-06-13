@@ -29,16 +29,39 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)    
 
+class Mensa(models.Model):
+    title = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+
 class Meetup(models.Model):
     title = models.CharField(max_length=100)
-    date = models.DateTimeField(default = timezone.now)
-    #many to many relationship between topics and meetups 
-    topic = models.ManyToManyField(Topic)
     about = models.TextField(blank=True, null=True)
+
     date_posted = models.DateTimeField(default = timezone.now)
-    #one to many relationship between meetups and users
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="mymeetups")
-    members = models.ManyToManyField(User, related_name="meetupsImin")
+    start_time = models.DateTimeField(default = timezone.now)
+
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="my_meetups")
+    # has
+    topics = models.ManyToManyField(Topic, null=False)
+    # joined by
+    members = models.ManyToManyField(User, related_name="meetups_i_am_in")
+
+    MEMBERS_LIMIT_CHOICES = [
+        ('TWO',   '2'),
+        ('THREE', '3'),
+        ('FOUR',  '4'),
+        ('FIVE',  '5'),
+        ('SIX',   '6'),
+        ('SEVEN', '7'),
+        ('EIGHT', '8')
+    ]
+    members_limit = models.CharField(max_length=5, choices=MEMBERS_LIMIT_CHOICES, default='FOUR')
+
+    # takes place in
+    mensa = models.ForeignKey(Mensa, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.title
