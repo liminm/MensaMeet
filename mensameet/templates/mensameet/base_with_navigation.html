@@ -1,31 +1,36 @@
 {% extends 'mensameet/base.html' %}
 
 {% block navigation %}
-	<header class="site-header">
-	  <nav class="shadow navbar navbar-expand-md navbar-light bg-steel fixed-top">
-	    <div class="container">
-	      <a class="navbar-brand mr-4" href="{% url 'mensameet-home' %}">MensaMeet</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	      </button>
-	      <div class="collapse navbar-collapse" id="navbarToggle">
-	        {% comment %} <div class="navbar-nav mr-auto">
-	          <a class="nav-item nav-link" href="{% url 'mensameet-home' %}">Home</a>
-	        </div> {% endcomment %}
-	        <!-- Navbar Right Side -->
-	        <div class="navbar-nav">
-						{% if user.is_authenticated %}
-							<a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-							<a class="nav-item nav-link" href="{% url 'meetup-home' %}">Meine Meetups</a>
-							<a class="nav-item nav-link" href="{% url 'meetup-create' %}">New Meetup</a>
-							<a class="nav-item nav-link" href="{% url 'mensameet-logout' %}">Logout</a>
-	        	{% else %}
 
-	          {% endif %}
-	        </div>
+	<header class="site-header">
+	   <nav class="shadow navbar navbar-expand-md navbar-light bg-steel fixed-top">
+	      <div class="container">
+	      	
+            <a class="title text-center navbar-brand mr-4 title-nav" style="font-size: 25px; color:#303030; margin-left:15px;" href="{% url 'mensameet-home' %}">MensaMeet</a>
+
+	         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+	         <span class="navbar-toggler-icon"></span>
+	         </button>
+	         <div class="collapse navbar-collapse" id="navbarToggle">
+	            <ul class="navbar-nav ml-auto">
+	               {% if user.is_authenticated %}
+	               <li class="nav-item">
+	                  <a class="nav-link" href="{% url 'meetup-home' %}">Meine Meetups</a>
+	               </li>
+	               <li class="nav-item">
+	                  <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+	               </li>
+	               <li class="nav-item">
+	                  <a class="nav-link" href="{% url 'mensameet-logout' %}">Logout</a>
+	               </li>
+	            </ul>
+	         </div>
+	         {% else %}
+	         {% endif %}
+	         </ul>
 	      </div>
-	    </div>
-	  </nav>
+	      </div>
+	   </nav>
 	</header>
 
 {% endblock navigation %}
