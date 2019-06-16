@@ -33,6 +33,10 @@
 
 </div>
 
+<a href="{% url 'meetup-create' %}" class="float">
+<div class="my-float">+</div>
+</a>
+
 
 <style>
 .filterTopic {
@@ -74,6 +78,22 @@ font-size: 15px;
   display: none;
   overflow: hidden;
   background-color: white;
+}
+
+.float{
+  position:fixed;
+  width:70px;
+  height:70px;
+  bottom:50px;
+  right:50px;
+  background-color:#999;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+}
+
+.my-float{
+  font-size: 40px;
 }
 
 </style>
