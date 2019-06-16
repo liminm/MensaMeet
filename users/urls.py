@@ -4,8 +4,7 @@ from .views import (
     MeetupDetailView,
     MeetupCreateView,
     MeetupUpdateView,
-    MeetupDeleteView,
-    MeetupListViewAll
+    MeetupDeleteView
 )
 
 urlpatterns = [
