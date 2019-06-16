@@ -3,9 +3,12 @@
 {% block content %}
 <div class="form-group row" style="margin:20px;"> 
 
-<button class="collapsible ">Filter by Topics</button>
-<div class="content">
-  <div id="myBtnContainer">
+<button class="collapsible collaps-topics">Filter by Topics</button>
+<button class="collapsible">Filter by Date</button>
+<button class="collapsible">Filter by Time</button>
+<button class="collapsible">Filter by Members</button>
+
+<div id="myBtnContainer" class="content">
     <button class="btn active" onclick="filterSelection('all')">All</button>
     <button class="btn" onclick="filterSelection('filterArt')"> Art</button>
   	<button class="btn" onclick="filterSelection('filterBooks')"> Science</button>
@@ -23,7 +26,10 @@
 	<button class="btn" onclick="filterSelection('filterTechnology')"> Technology</button>
 	<button class="btn" onclick="filterSelection('filterWriting')"> Writing</button>
   </div>
-</div>
+
+
+
+
 
 </div>
 
@@ -38,7 +44,7 @@
 }
 
 .active {
-	background-color:grey;
+	background-color:#baaa96;
 }
 
 .btn {
@@ -46,10 +52,12 @@
 }
 
 .collapsible {
-background-color: #ddd;
-color: #444;
+margin-right: 10px;
+border-radius: 10px;
+background-color: #dccebc;
+color: #353535;
 cursor: pointer;
-padding: 20px;
+padding: 10px 15px 10px 15px;
 border: none;
 text-align: left;
 outline: none;
@@ -57,10 +65,11 @@ font-size: 15px;
 }
 
 .collapsible:hover {
-  background-color: #aaa;
+  background-color: #baaa96;
 }
 
 .content {
+  margin:20px 0px 20px 0px;
   padding:18px;
   display: none;
   overflow: hidden;
@@ -70,13 +79,13 @@ font-size: 15px;
 </style>
 
 <script>
-var coll = document.getElementsByClassName("collapsible");
+var coll = document.getElementsByClassName("collaps-topics");
 var i;
 
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("colactive");
-    var content = this.nextElementSibling;
+    var content = document.getElementById("myBtnContainer");
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
