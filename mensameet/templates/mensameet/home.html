@@ -1,37 +1,84 @@
 {% extends 'mensameet/base_with_navigation.html' %}
 
 {% block content %}
-<div class="form-group row" style="margin:20px;"> 
 
-<button class="collapsible collaps-topics">Filter by Topics</button>
-<button class="collapsible">Filter by Date</button>
-<button class="collapsible">Filter by Time</button>
-<button class="collapsible">Filter by Members</button>
-
-<div id="myBtnContainer" class="content">
-    <button class="btn active" onclick="filterSelection('all')">All</button>
-    <button class="btn" onclick="filterSelection('filterArt')"> Art</button>
-  	<button class="btn" onclick="filterSelection('filterBooks')"> Science</button>
-	<button class="btn" onclick="filterSelection('filterBusiness')">Business</button>
-	<button class="btn" onclick="filterSelection('filterComputerScience')"> Computer Science</button>
-	<button class="btn" onclick="filterSelection('filterDancing')"> Dancing</button>
-	<button class="btn" onclick="filterSelection('filterFitness')"> Fitness</button>
-	<button class="btn" onclick="filterSelection('filterFood')"> Food</button>
-	<button class="btn" onclick="filterSelection('filterGaming')"> Gaming</button>
-	<button class="btn" onclick="filterSelection('filterMovies')"> Movies</button>
-	<button class="btn" onclick="filterSelection('filterMusic')"> Music</button>
-	<button class="btn" onclick="filterSelection('filterNature')"> Nature</button>
-	<button class="btn" onclick="filterSelection('filterPsychology')"> Psychology</button>
-	<button class="btn" onclick="filterSelection('filterScience')"> Science</button>
-	<button class="btn" onclick="filterSelection('filterTechnology')"> Technology</button>
-	<button class="btn" onclick="filterSelection('filterWriting')"> Writing</button>
-  </div>
+<div class="form-group row" style="margin:20px;">
 
 
-
-
+<button class="collapsible collaps-topics">Filter <i class="fa fa-filter"></i></button>
+<button class="collapsible">Sort <i class="fa fa-sort"></i></button>
 
 </div>
+
+
+<div id ="allFilter" class="content">
+	<div id="myBtnContainer" >
+		<label>Topics</label>
+		<div class="line"></div>
+		<button class="btn active" onclick="filterSelection('all')">All</button>
+		<button class="btn" onclick="filterSelection('filterArt')"> Art</button>
+		<button class="btn" onclick="filterSelection('filterBooks')"> Books</button>
+		<button class="btn" onclick="filterSelection('filterBusiness')">Business</button>
+		<button class="btn" onclick="filterSelection('filterComputerScience')"> Computer Science</button>
+		<button class="btn" onclick="filterSelection('filterDancing')"> Dancing</button>
+		<button class="btn" onclick="filterSelection('filterFitness')"> Fitness</button>
+		<button class="btn" onclick="filterSelection('filterFood')"> Food</button>
+		<button class="btn" onclick="filterSelection('filterGaming')"> Gaming</button>
+		<button class="btn" onclick="filterSelection('filterMovies')"> Movies</button>
+		<button class="btn" onclick="filterSelection('filterMusic')"> Music</button>
+		<button class="btn" onclick="filterSelection('filterNature')"> Nature</button>
+		<button class="btn" onclick="filterSelection('filterPsychology')"> Psychology</button>
+		<button class="btn" onclick="filterSelection('filterScience')"> Science</button>
+		<button class="btn" onclick="filterSelection('filterTechnology')"> Technology</button>
+		<button class="btn" onclick="filterSelection('filterWriting')"> Writing</button>
+		<div class="line"></div>
+	  </div>
+
+	<div class="row">
+	<div class="form-group">
+		<label for="selectMemberLimit">Members</label>
+		<select id ="mySelector"  class="form-control" id="selectMemberLimit">
+			<option onclick="filterSelectionLimit('all')">all</option>
+			<option value="filterLimitTWO">2</option>
+			<option value="filterLimitTHREE">3</option>
+			<option value="filterLimitFOUR">4</option>
+			<option value="filterLimitFIVE">5</option>
+			<option value="filterLimitSIX">6</option>
+		</select>
+	</div>
+
+		<div class="form-group">
+			<label for="selectDate">Date</label>
+			<select class="form-control" id="selectDate">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="selectTime">Time</label>
+			<select class="form-control" id="selectTime">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
 
 <a href="{% url 'meetup-create' %}" class="float">
 <div class="my-float">+</div>
@@ -39,6 +86,12 @@
 
 
 <style>
+
+.form-group {
+	margin-right:20px;
+	margin-left:20px;
+	}
+
 .filterTopic {
   display: none;
 }
@@ -96,6 +149,13 @@ font-size: 15px;
   font-size: 40px;
 }
 
+ .line{
+width: 100%;
+border-bottom: 1px solid darkgrey;
+margin-bottom:10px;
+}
+
+
 </style>
 
 <script>
@@ -105,7 +165,7 @@ var i;
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("colactive");
-    var content = document.getElementById("myBtnContainer");
+    var content = document.getElementById("allFilter");
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
@@ -113,6 +173,80 @@ for (i = 0; i < coll.length; i++) {
     }
   });
 }
+</script>
+
+
+<script>
+$( ".filterTopic" ).css( "border", "3px solid red" );
+</script>
+
+
+<script>
+filterSelectionLimit("all")
+
+function filterSelectionLimit(a) {
+  x = document.getElementsByClassName("filterTopic");
+  if (a == "all") a = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass1(x[i], "visible");
+  }
+  y = document.getElementsByClassName(a);
+  for (i = 0; i < y.length; i++) {
+    w3AddClass1(y[i], "visible");
+  }
+
+}
+
+function w3AddClass1(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass1(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+    </script>
+
+
+
+<script>
+        var parentDOM = document.getElementById("parent-id");
+
+        var test = parentDOM.getElementsByClassName("test"); // a list of matching elements, *not* the element itself
+        console.log(test); //HTMLCollection[1]
+
+        var testTarget = parentDOM.getElementsByClassName("test")[0]; // the first element, as we wanted
+        console.log(testTarget); //<p class="test">hello world 2</p>
+    </script>
+
+
+
+
+
+<script>
+function filterSelectionLimit(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterLimit");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "visible");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "visible");
+  }
+}
+
 </script>
 
 <script>
@@ -142,7 +276,7 @@ function w3RemoveClass(element, name) {
   arr2 = name.split(" ");
   for (i = 0; i < arr2.length; i++) {
     while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
     }
   }
   element.className = arr1.join(" ");
@@ -160,12 +294,11 @@ for (var i = 0; i < btns.length; i++) {
 </script>
 
 <div id="eventsContainer" class="container" style="margin-top: 20px;
-  overflow: hidden;"> 
-
+  overflow: hidden;">
 
     {% for meetup in meetupsAll %}
 
-		<div class=" filterTopic filterTechnology visible ">
+	<div class="visible filterTopic {% for topic in meetup.topics.all %} filter{{ topic  }} {% endfor %} filterLimit filterLimit{{ meetup.members_limit }} ">
 		<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
 			<h2>{{ meetup.title }}</h2>
 			<span class="date-time">{{ meetup.start_time }}</span><br />
@@ -187,6 +320,16 @@ for (var i = 0; i < btns.length; i++) {
 		</div>
 	{% endfor %}
 
-
 </div>
+
+<!--- SCRIPT TO FILTER BY  MEMBERS LIMIT -->
+<script>
+$(document).ready(function() {
+    $('#mySelector').change(function() {
+        $('.filterLimit').hide();
+        $('.' + $(this).val()).show();
+    });
+});
+</script>
+
 {% endblock content %}
