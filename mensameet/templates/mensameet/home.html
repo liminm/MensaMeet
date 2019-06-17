@@ -165,57 +165,28 @@ for (var i = 0; i < btns.length; i++) {
 
     {% for meetup in meetupsAll %}
 
-<div class=" filterTopic filterTechnology visible "> 
-<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
-    <h2>{{ meetup.title }}</h2>
-    <span class="date-time">{{ meetup.start_time }}</span><br />
- <p class="article-content">{{ meetup.about }}</p>
-          <p class="article-content">Topics:{{ meetup.topics }}</p>
-         <p class="article-content">Author:{{ meetup.author }}</p>
-        <p class="article-content">Members:{{ meetup.members }}</p>
-    <button class="ml-auto btn btn-success join">Join</button>
-    <button class="ml-auto btn btn-danger leave">Leave</button>
-  </section>
-</div>
+		<div class=" filterTopic filterTechnology visible ">
+		<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
+			<h2>{{ meetup.title }}</h2>
+			<span class="date-time">{{ meetup.start_time }}</span><br />
+		 	<p class="article-content">{{ meetup.about }}</p>
+			<p class="article-content">Topics:
+				{% for topic in meetup.topics.all %}
+				{{ topic  }}
+				{% endfor %}
+			</p>
+			<p class="article-content">Author:{{ meetup.author }}</p>
+			<p class="article-content">Members:
+				{% for member in meetup.members.all %}
+				{{ member  }}
+				{% endfor %}
+			</p>
+			<button class="ml-auto btn btn-success join">Join</button>
+			<button class="ml-auto btn btn-danger leave">Leave</button>
+		  </section>
+		</div>
+	{% endfor %}
 
-    {% endfor %}
-
-
-
-
-
-<div class=" filterTopic filterTechnology visible "> 
-<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
-		<h2>Technology Meeting</h2>
-		<span class="date-time"><small>12.12.2034</small> 12:34</span><br />
-		<span class="topics">topics</span><br />
-		<span class="participants"><small>Participants</small></span><br />
-		<button class="ml-auto btn btn-success join">Join</button>
-		<button class="ml-auto btn btn-danger leave">Leave</button>
-	</section>
-</div>
-
-<div class=" filterTopic filterArt visible "> 
-<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
-		<h2>Art Meeting</h2>
-		<span class="date-time"><small>12.12.2034</small> 12:34</span><br />
-		<span class="topics">topics</span><br />
-		<span class="participants"><small>Participants</small></span><br />
-		<button class="ml-auto btn btn-success join">Join</button>
-		<button class="ml-auto btn btn-danger leave">Leave</button>
-	</section>
-</div>
-
-<div class=" filterTopic filterGaming filterTechnology visible "> 
-<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
-		<h2>Gaming and Technology Meeting</h2>
-		<span class="date-time"><small>12.12.2034</small> 12:34</span><br />
-		<span class="topics">topics</span><br />
-		<span class="participants"><small>Participants</small></span><br />
-		<button class="ml-auto btn btn-success join">Join</button>
-		<button class="ml-auto btn btn-danger leave">Leave</button>
-	</section>
-</div>
 
 </div>
 {% endblock content %}
