@@ -14,36 +14,54 @@
 </div>
 
 <div id ="allFilter" class="content">
-	<div id="myBtnContainer" >
-		<label>Topics</label>
-		<div class="line"></div>
-		<button class="btn active" onclick="filterSelection('all')">All</button>
-		<button class="btn" onclick="filterSelection('filterArt')"> Art</button>
-		<button class="btn" onclick="filterSelection('filterBooks')"> Books</button>
-		<button class="btn" onclick="filterSelection('filterBusiness')">Business</button>
-		<button class="btn" onclick="filterSelection('filterComputerScience')"> Computer Science</button>
-		<button class="btn" onclick="filterSelection('filterDancing')"> Dancing</button>
-		<button class="btn" onclick="filterSelection('filterFitness')"> Fitness</button>
-		<button class="btn" onclick="filterSelection('filterFood')"> Food</button>
-		<button class="btn" onclick="filterSelection('filterGaming')"> Gaming</button>
-		<button class="btn" onclick="filterSelection('filterMovies')"> Movies</button>
-		<button class="btn" onclick="filterSelection('filterMusic')"> Music</button>
-		<button class="btn" onclick="filterSelection('filterNature')"> Nature</button>
-		<button class="btn" onclick="filterSelection('filterPsychology')"> Psychology</button>
-		<button class="btn" onclick="filterSelection('filterScience')"> Science</button>
-		<button class="btn" onclick="filterSelection('filterTechnology')"> Technology</button>
-		<button class="btn" onclick="filterSelection('filterWriting')"> Writing</button>
-		<div class="line"></div>
-	</div>
-
 	<table class="table">
 		<tr class="filters">
-			<div class="form-group">
-				<label for="members-limit-filter">Topics</label>
-				<select class="selectpicker form-control" multiple data-live-search="true">
-				<option>Mustard</option>
-				<option>Ketchup</option>
-				<option>Relish</option>
+			<div id="topics-filter-div" class="form-group">
+				<label for="topics-filter">Topics</label>
+				<select id="topics-filter" class="selectpicker form-control" multiple data-live-search="true" >
+					<option>Architecture</option>
+					<option>Art</option>
+					<option>Astrology</option>
+					<option>Astronomy</option>
+					<option>Books</option>
+					<option>Business</option>
+					<option>Cars</option>
+					<option>Culture</option>
+					<option>Computer Science</option>
+					<option>Dancing</option>
+					<option>Design</option>
+					<option>Education</option>
+					<option>Fashion</option>
+					<option>Feminism</option>
+					<option>Finance</option>
+					<option>Fitness</option>
+					<option>Food</option>
+					<option>Future</option>
+					<option>Gaming</option>
+					<option>History</option>
+					<option>Ideas</option>
+					<option>Law</option>
+					<option>Life</option>
+					<option>LGBTQ</option>
+					<option>Movies</option>
+					<option>Music</option>
+					<option>Nature</option>
+					<option>News</option>
+					<option>Parenting</option>
+					<option>Philosophy</option>
+					<option>Photography</option>
+					<option>Politics</option>
+					<option>Psychologie</option>
+					<option>Relationships</option>
+					<option>Religion</option>
+					<option>Science</option>
+					<option>Sex</option>
+					<option>Sports</option>
+					<option>Technology</option>
+					<option>Theatre</option>
+					<option>TV and Series</option>
+					<option>Vegan</option>
+					<option>Writing</option>
 			</select>
 			</div>
 
@@ -92,7 +110,6 @@
 
 
 <style>
-
 .form-group {
 	margin-right:20px;
 	margin-left:20px;
@@ -100,10 +117,6 @@
 
 .filterTopic {
   display: none;
-}
-
-.visible {
-  display: block;
 }
 
 .active {
@@ -135,8 +148,8 @@ font-size: 15px;
   margin:20px 0px 20px 0px;
   padding:18px;
   display: none;
-  overflow: hidden;
   background-color: white;
+
 }
 
 .float{
@@ -154,13 +167,6 @@ font-size: 15px;
 .my-float{
   font-size: 40px;
 }
-
- .line{
-width: 100%;
-border-bottom: 1px solid darkgrey;
-margin-bottom:10px;
-}
-
 </style>
 
 <script>
@@ -229,7 +235,7 @@ for (var i = 0; i < btns.length; i++) {
 
 	{% for meetup in meetupsAll %}
 
-	<div data-members-limit="{{ meetup.members_limit }}" class="task-list-row visible filterTopic {% for topic in meetup.topics.all %} filter{{ topic  }} {% endfor %} filterLimit filterLimit{{ meetup.members_limit }} ">
+	<div data-members-limit="{{ meetup.members_limit }}" data-topics="{% for topic in meetup.topics.all %} {{topic}} {% endfor %}" class="task-list-row">
 		<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
 			<h2>{{ meetup.title }}</h2>
 			<span class="date-time">{{ meetup.start_time }}</span><br />
@@ -253,49 +259,49 @@ for (var i = 0; i < btns.length; i++) {
 
 </div>
 
-<!--- SCRIPT TO FILTER 1
-<script>
-$(document).ready(function() {
-    $('#mySelector').change(function() {
-        $('.visible').hide();
-        $('.' + $(this).val(), '.visible').show();
-    });
-});
-</script>
--->
+		<!--
+
+		$( "div.dropdown-menu.show div.inner ul li.selected").each(function( index ) {
+		  alert($( this ));
+		});
+		-->
 
 <script>
-	var
-  membersFilter, statusFilter, milestoneFilter, priorityFilter, tagsFilter;
+	var membersFilter, topicsFilter, milestoneFilter, priorityFilter, tagsFilter;
 
-function updateFilters() {
-  $('.task-list-row').hide().filter(function() {
-    var
-      self = $(this),
-      result = true; // not guilty until proven guilty
+	function updateFilters() {
+	  $('.task-list-row').hide().filter(function() {
+		var
+		  self = $(this),
+		  result = true;
 
-    if (membersFilter && (membersFilter != 'all')) {
-      result = result && membersFilter === self.data('members-limit');
-    }
-    if (statusFilter && (statusFilter != 'Any')) {
-      result = result && statusFilter === self.data('status');
-    }
+		if (membersFilter && (membersFilter != 'all')) {
+		  result = result && membersFilter === self.data('members-limit');
+		}
 
-    return result;
-  }).show();
-}
+		if (topicsFilter && (topicsFilter != '')) {
+			  result = result && (~self.data('topics').indexOf(topicsFilter));
+		}
 
-// Assigned User Dropdown Filter
-$('#members-limit-filter').on('change', function() {
-  membersFilter = $('select[id="members-limit-filter"] :selected').attr('data-filter-value');
-  updateFilters();
-});
+		return result;
+	  }).show();
+	}
 
-// Task Status Dropdown Filter
-$('#status-filter').on('change', function() {
-  statusFilter = this.value;
-  updateFilters();
-});
+	function getValue( elem ) {
+		var a = elem.find('> a > span.text').text();
+		return a;
+	}
+
+	$('#topics-filter').on('change', function() {
+		 topicsFilter = getValue($("div.dropdown-menu.show div.inner ul li.selected"));
+		 updateFilters();
+		});
+
+	$('#members-limit-filter').on('change', function() {
+	  membersFilter = $('select[id="members-limit-filter"] :selected').attr('data-filter-value');
+	  updateFilters();
+	});
+
 </script>
 
 {% endblock content %}
