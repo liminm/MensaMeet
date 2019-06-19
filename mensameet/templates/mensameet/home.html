@@ -7,6 +7,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 
+
+
+
 <div class="form-group row" style="margin:20px;">
 	<button class="collapsible collaps">Filter <i class="fa fa-filter"></i></button>
 	<button class="collapsible">Sort <i class="fa fa-sort"></i></button>
@@ -107,14 +110,23 @@
 				<div class="form-group">
 				<label for="selectTime">Time</label><br>
 				<select class="selectpicker" id="selectTime">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+					<option>Show All</option>
+					<option>Before 11:00</option>
+					<option>11:00-12:00</option>
+					<option>12:00-13:00</option>
+					<option>13:00-14:00</option>
+					<option>14:00-15:00</option>
+					<option>After 15:00</option>
 				</select>
 			</div>
 
+
+<div style="padding:30px">
+				<input class="checked" type="checkbox" id="show-my-meetups">Show my Meetups</input>
+</div>
+				<div style="padding:30px">
+				<input class="checked" type="checkbox" id="show-full-meetups">Show full Meetups</input>
+				</div>
 				</div>
 
 		</tr>
@@ -233,8 +245,6 @@
 </script>
 
 
-
-
 <script>
 var coll = document.getElementsByClassName("collaps");
 var i;
@@ -286,7 +296,7 @@ for (i = 0; i < coll.length; i++) {
 </div>
 
 <script>
-	var membersFilter, topicsFilter, topicsFilterArr, mensaFilter, dateFilter;
+	var membersFilter, topicsFilter, topicsFilterArr, mensaFilter, dateFilter, myFilter;
 
 	function updateFilters() {
 	  $('.task-list-row').hide().filter(function() {
@@ -325,6 +335,8 @@ for (i = 0; i < coll.length; i++) {
 			}
 				result = result && tr;
 		}
+
+
 
 		return result;
 	  }).show();
@@ -365,6 +377,24 @@ for (i = 0; i < coll.length; i++) {
 	});
 
 
+	$( "#show-my-meetups" ).on( "click", function() {
+		if ($( "#show-my-meetups" ).attr("class")=="checked") {
+			myFilter=true;
+			$("#show-my-meetups").removeClass("checked");
+			$("#show-my-meetups").addClass("not");
+			}
+		else {
+			myFilter=false;
+			$("#show-my-meetups").removeClass("not");
+			$("#show-my-meetups").addClass("checked");
+			}
+
+		updateFilters();
+	});
+
+
+
 </script>
+
 
 {% endblock content %}
