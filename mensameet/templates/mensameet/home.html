@@ -6,7 +6,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-
 <div class="form-group row" style="margin:20px;">
 	<button class="collapsible collaps">Filter <i class="fa fa-filter"></i></button>
 	<button class="collapsible">Sort <i class="fa fa-sort"></i></button>
@@ -67,7 +66,7 @@
 			<div class="form-group">
 				<label for="members-limit-filter">Members</label>
 				<select id="members-limit-filter" class="form-control selectpicker">
-					<option>all</option>
+					<option>Show All</option>
 					<option data-filter-value="TWO">2</option>
 					<option data-filter-value="THREE">3</option>
 					<option data-filter-value="FOUR">4</option>
@@ -97,6 +96,22 @@
 					<option>5</option>
 				</select>
 			</div>
+
+			<div class="form-group">
+				<label for="mensa-filter">Mensa</label>
+				<select id="mensa-filter" class="form-control selectpicker">
+					<option >Show All</option>
+					<option >TU Hardenbergerstrasse</option>
+					<option >Mensa TU "Skyline"</option>
+					<option >Veggie Mensa</option>
+					<option >Mensa TU Marchstraße</option>
+					<option >Mensa TU Architektur</option>
+					<option >Mathe Café</option>
+					<option >Personalkantine</option>
+					<option >Cafeteria EN</option>
+				</select>
+			</div>
+
 		</tr>
 	</table>
 
@@ -190,11 +205,15 @@ for (i = 0; i < coll.length; i++) {
 
 	{% for meetup in meetupsAll %}
 
-	<div data-members-limit="{{ meetup.members_limit }}" data-topics="{% for topic in meetup.topics.all %}{{topic}} {% endfor %}" class="task-list-row">
+	<div data-members-limit="{{ meetup.members_limit }}"
+		 data-topics="{% for topic in meetup.topics.all %}{{topic}} {% endfor %}"
+		 data-mensa="{{meetup.mensa}}"
+		 class="task-list-row">
 		<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
 			<h2>{{ meetup.title }}</h2>
-			<span class="date-time">{{ meetup.start_time }}</span><br />
 			<p class="article-content">{{ meetup.about }}</p>
+			<span class="date-time">{{ meetup.start_time }}</span><br />
+			<p class="article-content">Mensa: {{ meetup.mensa }}</p>
 			<p class="article-content">Topics:
 				{% for topic in meetup.topics.all %}
 				{{ topic  }}
@@ -215,7 +234,7 @@ for (i = 0; i < coll.length; i++) {
 </div>
 
 <script>
-	var membersFilter, topicsFilter, topicsFilterArr;
+	var membersFilter, topicsFilter, topicsFilterArr, mensaFilter;
 
 	function updateFilters() {
 	  $('.task-list-row').hide().filter(function() {
@@ -223,8 +242,12 @@ for (i = 0; i < coll.length; i++) {
 		  self = $(this),
 		  result = true;
 
-		if (membersFilter && (membersFilter != 'all')) {
+		if (membersFilter && (membersFilter != 'Show All')) {
 		  result = result && membersFilter === self.data('members-limit');
+		}
+
+		if (mensaFilter && (mensaFilter != 'Show All')) {
+		  result = result && mensaFilter === self.data('mensa');
 		}
 
 		if (self.data('topics') == '' && topicsFilterArr!='') {
@@ -269,6 +292,11 @@ for (i = 0; i < coll.length; i++) {
 
 	$('#members-limit-filter').on('change', function() {
 	  membersFilter = $('select[id="members-limit-filter"] :selected').attr('data-filter-value');
+	  updateFilters();
+	});
+
+	$('#mensa-filter').on('change', function() {
+	  mensaFilter = $('select[id="mensa-filter"] :selected').val();
 	  updateFilters();
 	});
 
