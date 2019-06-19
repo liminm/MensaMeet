@@ -96,8 +96,8 @@
 
 				<div class="form-group">
 					<label>Date</label><br>
-					<div class="input-group date" data-provide="datepicker" data-date-format="dd. MM yyyy">
-						<input id="dateSelect" type="text" class="form-control" placeholder="Select Date">
+					<div class="input-group date" data-provide="datepicker" data-date-format="MM dd, yyyy">
+						<input id="date-filter" type="text" class="form-control" placeholder="Select Date">
 						<div class="input-group-addon">
 						</div>
 					</div>
@@ -259,6 +259,7 @@ for (i = 0; i < coll.length; i++) {
 	<div data-members-limit="{{ meetup.members_limit }}"
 		 data-topics="{% for topic in meetup.topics.all %}{{topic}} {% endfor %}"
 		 data-mensa="{{meetup.mensa}}"
+		 data-date-time="{{meetup.start_time}}"
 		 class="task-list-row">
 		<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
 			<h2>{{ meetup.title }}</h2>
@@ -285,7 +286,7 @@ for (i = 0; i < coll.length; i++) {
 </div>
 
 <script>
-	var membersFilter, topicsFilter, topicsFilterArr, mensaFilter;
+	var membersFilter, topicsFilter, topicsFilterArr, mensaFilter, dateFilter;
 
 	function updateFilters() {
 	  $('.task-list-row').hide().filter(function() {
@@ -299,6 +300,12 @@ for (i = 0; i < coll.length; i++) {
 
 		if (mensaFilter && (mensaFilter != 'Show All')) {
 		  result = result && mensaFilter === self.data('mensa');
+		}
+
+
+		if (dateFilter && (dateFilter != '')) {
+		var dateTime = self.data('date-time');
+		  result = result && (self.data('date-time').indexOf(dateFilter)!==-1);
 		}
 
 		if (self.data('topics') == '' && topicsFilterArr!='') {
@@ -351,10 +358,11 @@ for (i = 0; i < coll.length; i++) {
 	  updateFilters();
 	});
 
-	$('#dateSelect').on('change', function() {
-	  alert($('#dateSelect').val());
-	});
+	$('#date-filter').on('change', function() {
 
+	  dateFilter=$('#date-filter').val();
+	  updateFilters();
+	});
 
 
 </script>
