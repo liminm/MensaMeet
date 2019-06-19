@@ -6,6 +6,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
+
 <div class="form-group row" style="margin:20px;">
 	<button class="collapsible collaps">Filter <i class="fa fa-filter"></i></button>
 	<button class="collapsible">Sort <i class="fa fa-sort"></i></button>
@@ -14,9 +15,10 @@
 <div id ="allFilter" class="content">
 	<table class="table">
 		<tr class="filters">
+			<div class="row">
 			<div id="topics-filter-div" class="form-group">
-				<label for="topics-filter">Topics</label>
-				<select id="topics-filter" class="selectpicker form-control" multiple data-live-search="true" >
+				<label for="topics-filter">Topics</label><br>
+				<select id="topics-filter" data-width="400"  class="selectpicker" multiple data-live-search="true" >
 					<option>Architecture</option>
 					<option>Art</option>
 					<option>Astrology</option>
@@ -64,8 +66,8 @@
 			</div>
 
 			<div class="form-group">
-				<label for="members-limit-filter">Members</label>
-				<select id="members-limit-filter" class="form-control selectpicker">
+				<label for="members-limit-filter">Members Limit</label><br>
+				<select id="members-limit-filter" class="selectpicker">
 					<option>Show All</option>
 					<option data-filter-value="TWO">2</option>
 					<option data-filter-value="THREE">3</option>
@@ -75,9 +77,36 @@
 				</select>
 			</div>
 
-			<div class="form-group">
-				<label for="selectDate">Date</label>
-				<select class="form-control selectpicker" id="selectDate">
+
+				<div class="form-group">
+					<label for="mensa-filter">Mensa</label><br>
+					<select id="mensa-filter" class="selectpicker">
+						<option >Show All</option>
+						<option >TU Hardenbergerstrasse</option>
+						<option >Mensa TU "Skyline"</option>
+						<option >Veggie Mensa</option>
+						<option >Mensa TU Marchstraße</option>
+						<option >Mensa TU Architektur</option>
+						<option >Mathe Café</option>
+						<option >Personalkantine</option>
+						<option >Cafeteria EN</option>
+					</select>
+				</div>
+
+
+				<div class="form-group">
+					<label>Date</label><br>
+					<div class="input-group date" data-provide="datepicker" data-date-format="dd. MM yyyy">
+						<input id="dateSelect" type="text" class="form-control" placeholder="Select Date">
+						<div class="input-group-addon">
+						</div>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+				<label for="selectTime">Time</label><br>
+				<select class="selectpicker" id="selectTime">
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -86,34 +115,12 @@
 				</select>
 			</div>
 
-			<div class="form-group">
-				<label for="selectTime">Time</label>
-				<select class="form-control selectpicker" id="selectTime">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-				</select>
-			</div>
-
-			<div class="form-group">
-				<label for="mensa-filter">Mensa</label>
-				<select id="mensa-filter" class="form-control selectpicker">
-					<option >Show All</option>
-					<option >TU Hardenbergerstrasse</option>
-					<option >Mensa TU "Skyline"</option>
-					<option >Veggie Mensa</option>
-					<option >Mensa TU Marchstraße</option>
-					<option >Mensa TU Architektur</option>
-					<option >Mathe Café</option>
-					<option >Personalkantine</option>
-					<option >Cafeteria EN</option>
-				</select>
-			</div>
+				</div>
 
 		</tr>
 	</table>
+
+
 
 </div>
 </div>
@@ -124,64 +131,109 @@
 
 
 <style>
-.form-group {
-	margin-right:20px;
-	margin-left:20px;
+	.form-group {
+		margin-right:20px;
+		margin-left:20px;
 	}
 
-.filterTopic {
-  display: none;
-}
+	.btn {
+		margin:2px;
+	}
 
-.active {
-	background-color:#baaa96;
-}
+	.collapsible {
+		margin-right: 10px;
+		border-radius: 10px;
+		background-color: #dccebc;
+		color: #353535;
+		cursor: pointer;
+		padding: 10px 15px 10px 15px;
+		border: none;
+		text-align: left;
+		outline: none;
+		font-size: 15px;
+	}
 
-.btn {
-	margin:2px;
-}
+	.collapsible:hover {
+	 	background-color: #baaa96;
+	}
 
-.collapsible {
-margin-right: 10px;
-border-radius: 10px;
-background-color: #dccebc;
-color: #353535;
-cursor: pointer;
-padding: 10px 15px 10px 15px;
-border: none;
-text-align: left;
-outline: none;
-font-size: 15px;
-}
+	.content {
+		border-radius:5px;
+		margin:15px;
+		padding:18px;
+		display: none;
+		background-color: rgba(220, 206, 188, 0.5);
+	}
 
-.collapsible:hover {
-  background-color: #baaa96;
-}
+	.float{
+		position:fixed;
+		width:70px;
+		height:70px;
+		bottom:50px;
+		right:50px;
+		background-color:#999;
+		color:#FFF;
+		border-radius:50px;
+		text-align:center;
+	}
 
-.content {
-  margin:20px 0px 20px 0px;
-  padding:18px;
-  display: none;
-  background-color: white;
+	.my-float{
+		font-size: 40px;
+	}
 
-}
+	.datepicker {
+        font-family: Arial;
+        font-size:15px;
+        padding:10px;
+        text-align: center;
+      }
+      .datepicker-dropdown {
+        padding: 15px;
+      }
+      .datepicker table tr td.day:hover,
+      .datepicker table tr td.focused {
+        background: #909090;
+        cursor: pointer;
+      }
+      .datepicker table tr td.old,
+      .datepicker table tr td.new {
+        color: #808080;
+      }
+      .datepicker table tr td.today {
+        color: #184830;
+        background-color: #FFA953;
+        border-color: #FFB76F;
+      }
+      .datepicker table tr td,
+      .datepicker table tr th {
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+      }
+      .datepicker .prev:hover,
+      .datepicker .next:hover,
+      .datepicker tfoot tr th:hover {
+        cursor: pointer;
+        background: #909090;
+      }
 
-.float{
-  position:fixed;
-  width:70px;
-  height:70px;
-  bottom:50px;
-  right:50px;
-  background-color:#999;
-  color:#FFF;
-  border-radius:50px;
-  text-align:center;
-}
+      .datepicker .active {
+      background-color:#888;
+      }
 
-.my-float{
-  font-size: 40px;
-}
+
 </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $('.date').datepicker({autoclose: true});
+
+</script>
+
+
+
 
 <script>
 var coll = document.getElementsByClassName("collaps");
@@ -189,7 +241,6 @@ var i;
 
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
-    this.classList.toggle("colactive");
     var content = document.getElementById("allFilter");
     if (content.style.display === "block") {
       content.style.display = "none";
@@ -299,6 +350,12 @@ for (i = 0; i < coll.length; i++) {
 	  mensaFilter = $('select[id="mensa-filter"] :selected').val();
 	  updateFilters();
 	});
+
+	$('#dateSelect').on('change', function() {
+	  alert($('#dateSelect').val());
+	});
+
+
 
 </script>
 
