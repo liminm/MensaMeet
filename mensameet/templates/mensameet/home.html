@@ -130,9 +130,30 @@ for (var i = 0; i < btns.length; i++) {
 }
 </script>
 
-
 <div id="eventsContainer" class="container" style="margin-top: 20px;
   overflow: hidden;"> 
+
+
+    {% for meetup in meetupsAll %}
+
+<div class=" filterTopic filterTechnology visible "> 
+<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
+    <h2>{{ meetup.title }}</h2>
+    <span class="date-time">{{ meetup.start_time }}</span><br />
+ <p class="article-content">{{ meetup.about }}</p>
+          <p class="article-content">Topics:{{ meetup.topics }}</p>
+         <p class="article-content">Author:{{ meetup.author }}</p>
+        <p class="article-content">Members:{{ meetup.members }}</p>
+    <button class="ml-auto btn btn-success join">Join</button>
+    <button class="ml-auto btn btn-danger leave">Leave</button>
+  </section>
+</div>
+
+    {% endfor %}
+
+
+
+
 
 <div class=" filterTopic filterTechnology visible "> 
 <section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
