@@ -3,12 +3,9 @@
 {% block content %}
 <div class="form-group row" style="margin:20px;"> 
 
-<button class="collapsible collaps-topics">Filter by Topics</button>
-<button class="collapsible">Filter by Date</button>
-<button class="collapsible">Filter by Time</button>
-<button class="collapsible">Filter by Members</button>
-
-<div id="myBtnContainer" class="content">
+<button class="collapsible ">Filter by Topics</button>
+<div class="content">
+  <div id="myBtnContainer">
     <button class="btn active" onclick="filterSelection('all')">All</button>
     <button class="btn" onclick="filterSelection('filterArt')"> Art</button>
   	<button class="btn" onclick="filterSelection('filterBooks')"> Science</button>
@@ -26,16 +23,9 @@
 	<button class="btn" onclick="filterSelection('filterTechnology')"> Technology</button>
 	<button class="btn" onclick="filterSelection('filterWriting')"> Writing</button>
   </div>
-
-
-
-
-
 </div>
 
-<a href="{% url 'meetup-create' %}" class="float">
-<div class="my-float">+</div>
-</a>
+</div>
 
 
 <style>
@@ -48,7 +38,7 @@
 }
 
 .active {
-	background-color:#baaa96;
+	background-color:grey;
 }
 
 .btn {
@@ -56,12 +46,10 @@
 }
 
 .collapsible {
-margin-right: 10px;
-border-radius: 10px;
-background-color: #dccebc;
-color: #353535;
+background-color: #ddd;
+color: #444;
 cursor: pointer;
-padding: 10px 15px 10px 15px;
+padding: 20px;
 border: none;
 text-align: left;
 outline: none;
@@ -69,43 +57,26 @@ font-size: 15px;
 }
 
 .collapsible:hover {
-  background-color: #baaa96;
+  background-color: #aaa;
 }
 
 .content {
-  margin:20px 0px 20px 0px;
   padding:18px;
   display: none;
   overflow: hidden;
   background-color: white;
 }
 
-.float{
-  position:fixed;
-  width:70px;
-  height:70px;
-  bottom:50px;
-  right:50px;
-  background-color:#999;
-  color:#FFF;
-  border-radius:50px;
-  text-align:center;
-}
-
-.my-float{
-  font-size: 40px;
-}
-
 </style>
 
 <script>
-var coll = document.getElementsByClassName("collaps-topics");
+var coll = document.getElementsByClassName("collapsible");
 var i;
 
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("colactive");
-    var content = document.getElementById("myBtnContainer");
+    var content = this.nextElementSibling;
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
@@ -159,9 +130,30 @@ for (var i = 0; i < btns.length; i++) {
 }
 </script>
 
-
 <div id="eventsContainer" class="container" style="margin-top: 20px;
   overflow: hidden;"> 
+
+
+    {% for meetup in meetupsAll %}
+
+<div class=" filterTopic filterTechnology visible "> 
+<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
+    <h2>{{ meetup.title }}</h2>
+    <span class="date-time">{{ meetup.start_time }}</span><br />
+ <p class="article-content">{{ meetup.about }}</p>
+          <p class="article-content">Topics:{{ meetup.topics }}</p>
+         <p class="article-content">Author:{{ meetup.author }}</p>
+        <p class="article-content">Members:{{ meetup.members }}</p>
+    <button class="ml-auto btn btn-success join">Join</button>
+    <button class="ml-auto btn btn-danger leave">Leave</button>
+  </section>
+</div>
+
+    {% endfor %}
+
+
+
+
 
 <div class=" filterTopic filterTechnology visible "> 
 <section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
