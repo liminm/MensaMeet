@@ -91,16 +91,6 @@
 
 
 				<div class="form-group">
-					<label for="date-filter">Date</label><br>
-					<div class="input-group date" data-provide="datepicker" data-date-format="MM dd, yyyy">
-						<input id="date-filter" type="text" class="form-control" placeholder="Select Date">
-						<div class="input-group-addon">
-						</div>
-					</div>
-				</div>
-
-
-				<div class="form-group">
 					<label for="selectTime">Time</label><br>
 					<select class="selectpicker" id="selectTime">
 						<option>Show All</option>
@@ -113,17 +103,22 @@
 					</select>
 				</div>
 
+				<div class="form-group">
+					<label for="date-filter">Date</label><br>
+					<div class="input-group date" data-provide="datepicker" data-date-format="MM dd, yyyy">
+						<input id="date-filter" type="text" class="form-control" placeholder="Select Date">
+						<button class="clear-date">Clear Date</button>
+						<div class="input-group-addon">
+						</div>
+					</div>
+				</div>
 
-				<div class="checkbox-filter">
-					<input class="checked" type="checkbox" id="show-my-meetups"
-						   aria-label="show-my-meetups">Show my Meetups</input>
-				</div>
-				<div class="checkbox-filter">
-					<input class="checked" type="checkbox" id="show-full-meetups"
-						   aria-label="show-all-meetups">Show full Meetups</input>
-				</div>
 
 			</div>
+
+
+
+
 		</tr>
 	</table>
 </div>
@@ -142,6 +137,8 @@
 		 data-topics="{% for topic in meetup.topics.all %}{{topic}} {% endfor %}"
 		 data-mensa="{{meetup.mensa}}"
 		 data-date-time="{{meetup.start_time}}"
+		 data-author="{{meetup.author}}"
+		 data-users="{% for member in meetup.members.all %}{{member}} {% endfor %}"
 		 class="task-list-row">
 		<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
 			<h2>{{ meetup.title }}</h2>
