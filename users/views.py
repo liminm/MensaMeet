@@ -52,10 +52,10 @@ def profile(request):
 
 @login_required
 def leaveMeetup(request, pk):
-	OurUser = request.users
+	OurUser = request.user
 	OurMeetup = OurUser.my_meetups.get(id=pk)
-	#OurMeetup.members.remove(OurUser)
-	#OurMeetup.author.remove(OurUser)
+	OurMeetup.members.remove(OurUser)
+	#OurUser.my_meetups.remove(OurMeetup)
 	messages.success(request, f'You have left this meetup! {OurMeetup.author}')
 	return render(request, 'users/ownmeetups.html')
 
