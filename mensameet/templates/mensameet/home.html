@@ -1,13 +1,7 @@
 {% extends 'mensameet/base_with_navigation.html' %}
 
 
-
 {% block content %}
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-
 
 <div class="form-group row filter-sort-buttons">
 	<button class="collapsible collaps">Filter <i class="fa fa-filter"></i></button>
@@ -18,66 +12,66 @@
 	<table class="table">
 		<tr class="filters">
 			<div class="row">
-			<div id="topics-filter-div" class="form-group">
-				<label for="topics-filter">Topics</label><br>
-				<select id="topics-filter" data-width="400"  class="selectpicker" multiple data-live-search="true" >
-					<option>Architecture</option>
-					<option>Art</option>
-					<option>Astrology</option>
-					<option>Astronomy</option>
-					<option>Books</option>
-					<option>Business</option>
-					<option>Cars</option>
-					<option>Culture</option>
-					<option>Computer Science</option>
-					<option>Dancing</option>
-					<option>Design</option>
-					<option>Education</option>
-					<option>Fashion</option>
-					<option>Feminism</option>
-					<option>Finance</option>
-					<option>Fitness</option>
-					<option>Food</option>
-					<option>Future</option>
-					<option>Gaming</option>
-					<option>History</option>
-					<option>Ideas</option>
-					<option>Law</option>
-					<option>Life</option>
-					<option>LGBTQ</option>
-					<option>Movies</option>
-					<option>Music</option>
-					<option>Nature</option>
-					<option>News</option>
-					<option>Parenting</option>
-					<option>Philosophy</option>
-					<option>Photography</option>
-					<option>Politics</option>
-					<option>Psychologie</option>
-					<option>Relationships</option>
-					<option>Religion</option>
-					<option>Science</option>
-					<option>Sex</option>
-					<option>Sports</option>
-					<option>Technology</option>
-					<option>Theatre</option>
-					<option>TV and Series</option>
-					<option>Vegan</option>
-					<option>Writing</option>
-			</select>
-			</div>
-
-			<div class="form-group">
-				<label for="members-limit-filter">Members Limit</label><br>
-				<select id="members-limit-filter" class="selectpicker">
-					<option>Show All</option>
-					<option data-filter-value="TWO">2</option>
-					<option data-filter-value="THREE">3</option>
-					<option data-filter-value="FOUR">4</option>
-					<option data-filter-value="FIVE">5</option>
-					<option data-filter-value="SIX">6</option>
+				<div id="topics-filter-div" class="form-group">
+					<label for="topics-filter">Topics</label><br>
+					<select id="topics-filter" data-width="400"  class="selectpicker" multiple data-live-search="true" >
+						<option>Architecture</option>
+						<option>Art</option>
+						<option>Astrology</option>
+						<option>Astronomy</option>
+						<option>Books</option>
+						<option>Business</option>
+						<option>Cars</option>
+						<option>Culture</option>
+						<option>Computer Science</option>
+						<option>Dancing</option>
+						<option>Design</option>
+						<option>Education</option>
+						<option>Fashion</option>
+						<option>Feminism</option>
+						<option>Finance</option>
+						<option>Fitness</option>
+						<option>Food</option>
+						<option>Future</option>
+						<option>Gaming</option>
+						<option>History</option>
+						<option>Ideas</option>
+						<option>Law</option>
+						<option>Life</option>
+						<option>LGBTQ</option>
+						<option>Movies</option>
+						<option>Music</option>
+						<option>Nature</option>
+						<option>News</option>
+						<option>Parenting</option>
+						<option>Philosophy</option>
+						<option>Photography</option>
+						<option>Politics</option>
+						<option>Psychologie</option>
+						<option>Relationships</option>
+						<option>Religion</option>
+						<option>Science</option>
+						<option>Sex</option>
+						<option>Sports</option>
+						<option>Technology</option>
+						<option>Theatre</option>
+						<option>TV and Series</option>
+						<option>Vegan</option>
+						<option>Writing</option>
 				</select>
-			</div>
+				</div>
+
+				<div class="form-group">
+					<label for="members-limit-filter">Members Limit</label><br>
+					<select id="members-limit-filter" class="selectpicker">
+						<option>Show All</option>
+						<option data-filter-value="TWO">2</option>
+						<option data-filter-value="THREE">3</option>
+						<option data-filter-value="FOUR">4</option>
+						<option data-filter-value="FIVE">5</option>
+						<option data-filter-value="SIX">6</option>
+					</select>
+				</div>
 
 
 				<div class="form-group">
@@ -97,7 +91,7 @@
 
 
 				<div class="form-group">
-					<label>Date</label><br>
+					<label for="date-filter">Date</label><br>
 					<div class="input-group date" data-provide="datepicker" data-date-format="MM dd, yyyy">
 						<input id="date-filter" type="text" class="form-control" placeholder="Select Date">
 						<div class="input-group-addon">
@@ -107,63 +101,38 @@
 
 
 				<div class="form-group">
-				<label for="selectTime">Time</label><br>
-				<select class="selectpicker" id="selectTime">
-					<option>Show All</option>
-					<option>Before 11:00</option>
-					<option>11:00-12:00</option>
-					<option>12:00-13:00</option>
-					<option>13:00-14:00</option>
-					<option>14:00-15:00</option>
-					<option>After 15:00</option>
-				</select>
+					<label for="selectTime">Time</label><br>
+					<select class="selectpicker" id="selectTime">
+						<option>Show All</option>
+						<option>Before 11:00</option>
+						<option>11:00-12:00</option>
+						<option>12:00-13:00</option>
+						<option>13:00-14:00</option>
+						<option>14:00-15:00</option>
+						<option>After 15:00</option>
+					</select>
+				</div>
+
+
+				<div class="checkbox-filter">
+					<input class="checked" type="checkbox" id="show-my-meetups"
+						   aria-label="show-my-meetups">Show my Meetups</input>
+				</div>
+				<div class="checkbox-filter">
+					<input class="checked" type="checkbox" id="show-full-meetups"
+						   aria-label="show-all-meetups">Show full Meetups</input>
+				</div>
+
 			</div>
-
-
-<div style="padding:30px">
-				<input class="checked" type="checkbox" id="show-my-meetups">Show my Meetups</input>
-</div>
-				<div style="padding:30px">
-				<input class="checked" type="checkbox" id="show-full-meetups">Show full Meetups</input>
-				</div>
-				</div>
-
 		</tr>
 	</table>
-
-
-
 </div>
-</div>
+
 
 <a href="{% url 'meetup-create' %}" class="float">
 	<div class="my-float">+</div>
 </a>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript">
-    $('.date').datepicker({autoclose: true});
-
-</script>
-
-
-<script>
-var coll = document.getElementsByClassName("collaps");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    var content = document.getElementById("allFilter");
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
-</script>
 
 <div id="eventsContainer" class="container meetups-container">
 
@@ -197,107 +166,6 @@ for (i = 0; i < coll.length; i++) {
 	{% endfor %}
 
 </div>
-
-<script>
-	var membersFilter, topicsFilter, topicsFilterArr, mensaFilter, dateFilter, myFilter;
-
-	function updateFilters() {
-	  $('.task-list-row').hide().filter(function() {
-		var
-		  self = $(this),
-		  result = true;
-
-		if (membersFilter && (membersFilter != 'Show All')) {
-		  result = result && membersFilter === self.data('members-limit');
-		}
-
-		if (mensaFilter && (mensaFilter != 'Show All')) {
-		  result = result && mensaFilter === self.data('mensa');
-		}
-
-
-		if (dateFilter && (dateFilter != '')) {
-		var dateTime = self.data('date-time');
-		  result = result && (self.data('date-time').indexOf(dateFilter)!==-1);
-		}
-
-		if (self.data('topics') == '' && topicsFilterArr!='') {
-		result = false;
-		}
-
-		if (topicsFilter && topicsFilterArr!='') {
-
-			var tr=true;
-			var i;
-			for (i=0;i<topicsFilterArr.length;i++) {
-
-				if (self.data('topics').indexOf(topicsFilterArr[i]) == -1) {
-					tr = false;
-					break;
-				}
-			}
-				result = result && tr;
-		}
-
-
-
-		return result;
-	  }).show();
-
-	}
-
-	function getValue( elem ) {
-		var a ="";
-		elem.each(function( index ) {
-			let b = $( this ).text();
-	    	a = a.concat(b);
-	    	a = a.concat(",");
-		});
-		a = a.slice(0,-1);
-		return a;
-	}
-
-	$('#topics-filter').on('change', function() {
-		topicsFilter = getValue($("div.dropdown-menu.show div.inner ul li.selected"));
-		topicsFilterArr = topicsFilter.split(",");
-		updateFilters();
-		});
-
-	$('#members-limit-filter').on('change', function() {
-	  membersFilter = $('select[id="members-limit-filter"] :selected').attr('data-filter-value');
-	  updateFilters();
-	});
-
-	$('#mensa-filter').on('change', function() {
-	  mensaFilter = $('select[id="mensa-filter"] :selected').val();
-	  updateFilters();
-	});
-
-	$('#date-filter').on('change', function() {
-
-	  dateFilter=$('#date-filter').val();
-	  updateFilters();
-	});
-
-
-	$( "#show-my-meetups" ).on( "click", function() {
-		if ($( "#show-my-meetups" ).attr("class")=="checked") {
-			myFilter=true;
-			$("#show-my-meetups").removeClass("checked");
-			$("#show-my-meetups").addClass("not");
-			}
-		else {
-			myFilter=false;
-			$("#show-my-meetups").removeClass("not");
-			$("#show-my-meetups").addClass("checked");
-			}
-
-		updateFilters();
-	});
-
-
-
-</script>
 
 
 {% endblock content %}
