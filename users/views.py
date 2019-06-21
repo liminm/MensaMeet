@@ -53,9 +53,12 @@ def profile(request):
 @login_required
 def leaveMeetup(request, pk):
 	OurUser = request.user
-	OurMeetup = OurUser.my_meetups.get(id=pk)
+	#OurMeetup = OurUser.my_meetups.get(id=pk)
+	OurMeetup = OurUser.meetups_i_am_in.get(id=pk)
 	OurMeetup.members.remove(OurUser)
 	#OurUser.my_meetups.remove(OurMeetup)
+	if OurMeetup.author == OurUser:
+		OurMeetup.delete()
 	messages.success(request, f'You have left this meetup! {OurMeetup.author}')
 	return render(request, 'users/ownmeetups.html')
 
