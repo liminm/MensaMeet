@@ -58,7 +58,7 @@
 						<option>TV and Series</option>
 						<option>Vegan</option>
 						<option>Writing</option>
-				</select>
+					</select>
 				</div>
 
 				<div class="form-group">
@@ -92,20 +92,20 @@
 
 				<div class="form-group">
 					<label for="selectTime">Time</label><br>
-					<select class="selectpicker" id="selectTime">
-						<option>Show All</option>
-						<option>Before 11:00</option>
-						<option>11:00-12:00</option>
-						<option>12:00-13:00</option>
-						<option>13:00-14:00</option>
-						<option>14:00-15:00</option>
-						<option>After 15:00</option>
+					<select id="time-filter" class="selectpicker" id="selectTime">
+						<option data-time-after="" data-time-before="">Show All</option>
+						<option data-time-after="0000" data-time-before="1100">Before 11:00</option>
+						<option data-time-after="1100" data-time-before="1200">11:00-12:00</option>
+						<option data-time-after="1200" data-time-before="1300">12:00-13:00</option>
+						<option data-time-after="1300" data-time-before="1400">13:00-14:00</option>
+						<option data-time-after="1400" data-time-before="1500">14:00-15:00</option>
+						<option data-time-after="1500" data-time-before="2400">After 15:00</option>
 					</select>
 				</div>
 
 				<div class="form-group">
 					<label for="date-filter">Date</label><br>
-					<div class="input-group date" data-provide="datepicker" data-date-format="MM dd, yyyy">
+					<div class="input-group date" data-provide="datepicker" data-date-format="dd.mm.yyyy">
 						<input id="date-filter" type="text" class="form-control" placeholder="Select Date">
 						<button class="clear-date">Clear Date</button>
 						<div class="input-group-addon">
@@ -115,9 +115,6 @@
 
 
 			</div>
-
-
-
 
 		</tr>
 	</table>
@@ -136,14 +133,16 @@
 	<div data-members-limit="{{ meetup.members_limit }}"
 		 data-topics="{% for topic in meetup.topics.all %}{{topic}} {% endfor %}"
 		 data-mensa="{{meetup.mensa}}"
-		 data-date-time="{{meetup.start_time}}"
+		 data-date="{{meetup.start_time|date:'d.m.Y'}}"
+		 data-time="{{meetup.start_time|date:'H:i'}}"
 		 data-author="{{meetup.author}}"
 		 data-users="{% for member in meetup.members.all %}{{member}} {% endfor %}"
 		 class="task-list-row">
 		<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
 			<h2>{{ meetup.title }}</h2>
 			<p class="article-content">{{ meetup.about }}</p>
-			<span class="date-time">{{ meetup.start_time }}</span><br />
+			<span class="date">Date: {{ meetup.start_time |date:"d.m.Y"}}</span>
+			<span class="time">Time: {{ meetup.start_time |date:"H:i"}}</span><br />
 			<p class="article-content">Mensa: {{ meetup.mensa }}</p>
 			<p class="article-content">Topics:
 				{% for topic in meetup.topics.all %}
@@ -166,3 +165,4 @@
 
 
 {% endblock content %}
+

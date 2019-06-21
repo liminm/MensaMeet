@@ -11,7 +11,7 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-var membersFilter, topicsFilter, topicsFilterArr, mensaFilter, dateFilter, fullFilter;
+var membersFilter, topicsFilter, topicsFilterArr, mensaFilter, dateFilter, timeFilterBefore, timeFilterAfter;
 function updateFilters() {
   $('.task-list-row').hide().filter(function() {
     var
@@ -26,11 +26,16 @@ function updateFilters() {
       result = result && mensaFilter === self.data('mensa');
     }
 
-
     if (dateFilter && (dateFilter != '')) {
-    var dateTime = self.data('date-time');
-      result = result && (self.data('date-time').indexOf(dateFilter)!==-1);
+    var dateTime = self.data('date');
+      result = result && (self.data('date').indexOf(dateFilter)!==-1);
     }
+
+    if (timeFilterBefore && timeFilterBefore!=='' && timeFilterAfter && timeFilterAfter !== '') {
+            selectedTime = parseInt(self.data('time').replace(':', ''));
+            result = result && (selectedTime<=parseInt(timeFilterBefore)) && (selectedTime>=parseInt(timeFilterAfter));
+        }
+
 
     if (self.data('topics') == '' && topicsFilterArr!='') {
     result = false;
@@ -48,12 +53,6 @@ function updateFilters() {
             }
         }
             result = result && tr;
-    }
-
-    if (fullFilter==true) {
-        alert(self.data('members').length);
-        alert(self.data("members-limit"));
-        result = result && (self.data('members').length===self.data("members-limit"));
     }
 
     return result;
@@ -100,3 +99,8 @@ $('.clear-date').on('click', function() {
     updateFilters();
 });
 
+$('#time-filter').on('change', function() {
+    timeFilterBefore=$('select[id="time-filter"] :selected').attr('data-time-before');
+    timeFilterAfter=$('select[id="time-filter"] :selected').attr('data-time-after');
+    updateFilters();
+});
