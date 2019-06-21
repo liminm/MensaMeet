@@ -1,5 +1,7 @@
 {% extends 'mensameet/base_with_navigation.html' %}
 
+
+
 {% block content %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -7,10 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 
-
-
-
-<div class="form-group row" style="margin:20px;">
+<div class="form-group row filter-sort-buttons">
 	<button class="collapsible collaps">Filter <i class="fa fa-filter"></i></button>
 	<button class="collapsible">Sort <i class="fa fa-sort"></i></button>
 </div>
@@ -142,101 +141,6 @@
 </a>
 
 
-<style>
-	.form-group {
-		margin-right:20px;
-		margin-left:20px;
-	}
-
-	.btn {
-		margin:2px;
-	}
-
-	.collapsible {
-		margin-right: 10px;
-		border-radius: 10px;
-		background-color: #dccebc;
-		color: #353535;
-		cursor: pointer;
-		padding: 10px 15px 10px 15px;
-		border: none;
-		text-align: left;
-		outline: none;
-		font-size: 15px;
-	}
-
-	.collapsible:hover {
-	 	background-color: #baaa96;
-	}
-
-	.content {
-		border-radius:5px;
-		margin:15px;
-		padding:18px;
-		display: none;
-		background-color: rgba(220, 206, 188, 0.5);
-	}
-
-	.float{
-		position:fixed;
-		width:70px;
-		height:70px;
-		bottom:50px;
-		right:50px;
-		background-color:#999;
-		color:#FFF;
-		border-radius:50px;
-		text-align:center;
-	}
-
-	.my-float{
-		font-size: 40px;
-	}
-
-	.datepicker {
-        font-family: Arial;
-        font-size:15px;
-        padding:10px;
-        text-align: center;
-      }
-      .datepicker-dropdown {
-        padding: 15px;
-      }
-      .datepicker table tr td.day:hover,
-      .datepicker table tr td.focused {
-        background: #909090;
-        cursor: pointer;
-      }
-      .datepicker table tr td.old,
-      .datepicker table tr td.new {
-        color: #808080;
-      }
-      .datepicker table tr td.today {
-        color: #184830;
-        background-color: #FFA953;
-        border-color: #FFB76F;
-      }
-      .datepicker table tr td,
-      .datepicker table tr th {
-        text-align: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 4px;
-      }
-      .datepicker .prev:hover,
-      .datepicker .next:hover,
-      .datepicker tfoot tr th:hover {
-        cursor: pointer;
-        background: #909090;
-      }
-
-      .datepicker .active {
-      background-color:#888;
-      }
-
-
-</style>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
@@ -261,8 +165,7 @@ for (i = 0; i < coll.length; i++) {
 }
 </script>
 
-<div id="eventsContainer" class="container" style="margin-top: 20px;
-  overflow: hidden;">
+<div id="eventsContainer" class="container meetups-container">
 
 	{% for meetup in meetupsAll %}
 

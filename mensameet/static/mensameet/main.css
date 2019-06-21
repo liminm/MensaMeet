@@ -1,68 +1,176 @@
 html {
-   font-size: 16px;
-   line-height: 1.4;
+	font-size: 16px;
+	line-height: 1.4;
 }
 
 body {
-   background-attachment: fixed;
-   background-color: antiquewhite;
+	background-attachment: fixed;
+	background-color: antiquewhite;
 }
 
 a {
-   color: #999999;
-   text-decoration: none !important;
+	color: #999999;
+	text-decoration: none !important;
 }
 
 a:hover {
-   color: gray;
-   text-decoration: none !important;
+	color: gray;
+	text-decoration: none !important;
 }
 
 nav {
-   background-color: #fff;
-   color: #000;
+	background-color: #fff;
+	color: #000;
 }
 
 nav a {
-   color: #000;
+	color: #000;
 }
 
 main {
-   margin-top: 6rem;;
+	margin-top: 6rem;
+	;
 }
 
 .login-form {
-   padding: 2.5rem;
-   background-color: #ffffff;
-   border-radius: 1.875rem;
-   outline: 0;
-   /* @TODO: remove and make width based on bootstrap "col-" classes */
-   max-width: 500px;
-   min-width: 400px;
+	padding: 2.5rem;
+	background-color: #ffffff;
+	border-radius: 1.875rem;
+	outline: 0;
+	/* @TODO: remove and make width based on bootstrap "col-" classes */
+	max-width: 500px;
+	min-width: 400px;
 }
 
 .submit-btn {
-   border-radius: 50px;
-   margin-top: 10px;
-   margin-bottom: 40px;
+	border-radius: 50px;
+	margin-top: 10px;
+	margin-bottom: 40px;
 }
 
 .icon {
-   content: url('../logo.png');
-   width: 5rem;
-   height: 5rem;
-   border-radius: 0.625rem;
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
-   margin-top: 0.625rem;
+	content: url('../logo.png');
+	width: 5rem;
+	height: 5rem;
+	border-radius: 0.625rem;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0.625rem;
 }
 
 .title {
-   margin-left: auto;
-   margin-right: auto;
-   font-size: 2.75rem;
-   font-family: Pacifico;
-   color: #000;
-   text-shadow: 0.12em 0.12em 0.12em #00000029;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 2.75rem;
+	font-family: Pacifico;
+	color: #000;
+	text-shadow: 0.12em 0.12em 0.12em #00000029;
 }
+
+.form-group {
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.btn {
+	margin: 2px;
+}
+
+.collapsible {
+	margin-right: 10px;
+	border-radius: 10px;
+	background-color: #dccebc;
+	color: #353535;
+	cursor: pointer;
+	padding: 10px 15px 10px 15px;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+}
+
+.collapsible:hover {
+	background-color: #baaa96;
+}
+
+.content {
+	border-radius: 5px;
+	margin: 15px;
+	padding: 18px;
+	display: none;
+	background-color: rgba(220, 206, 188, 0.5);
+}
+
+.meetups-container {
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.filter-sort-buttons {
+    margin:20px;
+}
+
+.float {
+	position: fixed;
+	width: 70px;
+	height: 70px;
+	bottom: 50px;
+	right: 50px;
+	background-color: #999;
+	color: #FFF;
+	border-radius: 50px;
+	text-align: center;
+}
+
+.my-float {
+	font-size: 40px;
+}
+
+.datepicker {
+	font-family: Arial;
+	font-size: 15px;
+	padding: 10px;
+	text-align: center;
+}
+
+.datepicker-dropdown {
+	padding: 15px;
+}
+
+.datepicker table tr td.day:hover,
+.datepicker table tr td.focused {
+	background: #909090;
+	cursor: pointer;
+}
+
+.datepicker table tr td.old,
+.datepicker table tr td.new {
+	color: #808080;
+}
+
+.datepicker table tr td.today {
+	color: #184830;
+	background-color: #FFA953;
+	border-color: #FFB76F;
+}
+
+.datepicker table tr td,
+.datepicker table tr th {
+	text-align: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 4px;
+}
+
+.datepicker .prev:hover,
+.datepicker .next:hover,
+.datepicker tfoot tr th:hover {
+	cursor: pointer;
+	background: #909090;
+}
+
+.datepicker .active {
+	background-color: #888;
+}
+
