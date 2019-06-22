@@ -50,6 +50,29 @@ def profile(request):
 		}	
 	return render(request, 'users/profile.html', context)	
 
+@login_required
+def leaveMeetup(request, pk):
+	OurUser = request.user
+	#OurMeetup = OurUser.my_meetups.get(id=pk)
+	OurMeetup = OurUser.meetups_i_am_in.get(id=pk)
+	OurMeetup.members.remove(OurUser)
+	#OurUser.my_meetups.remove(OurMeetup)
+	if OurMeetup.author == OurUser:
+		if OurMeetup.members.exists():
+			OurMeetup.author = OurMeetup.members.all()[0]
+			OurMeetup.save()	
+		else:
+			OurMeetup.delete()			
+	messages.success(request, f'You have left this meetup! {OurMeetup.author}')
+	return render(request, 'users/ownmeetups.html')
+
+@login_required
+def joinMeetup(request, pk):
+	OurUser = request.user
+	OurMeetup = Meetup.objects.get(id=pk)
+	OurMeetup.members.add(OurUser)
+	messages.success(request, f'You have joined in this meetup!')
+	return render(request, 'users/ownmeetups.html')	
 
 class MeetupListView(LoginRequiredMixin, ListView):
 	model = Meetup
@@ -65,40 +88,22 @@ class MeetupListView(LoginRequiredMixin, ListView):
 class MeetupDetailView(DetailView):
 	model = Meetup
 
-
 class MeetupCreateView(LoginRequiredMixin, CreateView):
 	model = Meetup
 	fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
 	success_url = '/mymeetups'
-	
+
 	def form_valid(self, form):
 		form.instance.author = self.request.user
-		return super().form_valid(form)
-
-
-#class MeetupCreateView(TemplateView):
-#	template_name = "users/meetup_form.html"
-#
-#	def post(self, request, *args, **kwargs):
-#		context = self.get_context_data()
-#		if context["form"].is_valid():
-#			print ('yes done')
-#			form = context["form"]
-#			form.instance.author = self.request.user
-#			#meetup = form.save(commit = False)
-#			#meetup.save()
-#			for topic in Topic.objects.all():
-#				print(topic)
-#				#meetup.topic_set.add(topic)
-#			form.save()
-#
-#		return super(TemplateView, self).render_to_response(context)
+		form.instance.save()
+		form.instance.members.add(self.request.user)
+		return super().form_valid(form)		
 
 	def get_context_data(self, **kwargs):
 		context = super(MeetupCreateView, self).get_context_data(**kwargs)
 
 		form = MeetupCreateForm(self.request.POST or None)
-		context["form"] = form
+		context["form"] = form	
 
 		return context
 
@@ -132,3 +137,4 @@ class MeetupDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == meetup.author:
 			return True
 		return False
+		

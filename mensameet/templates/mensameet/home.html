@@ -3,11 +3,6 @@
 
 {% block content %}
 
-<div class="form-group row filter-sort-buttons">
-	<button class="collapsible collaps">Filter <i class="fa fa-filter"></i></button>
-	<button class="collapsible">Sort <i class="fa fa-sort"></i></button>
-</div>
-
 <div id ="allFilter" class="content">
 	<table class="table">
 		<tr class="filters">
@@ -118,19 +113,13 @@
 
 		</tr>
 	</table>
-</div>
-
-
-<a href="{% url 'meetup-create' %}" class="float">
-	<div class="my-float">+</div>
-</a>
-
+	</div>
 
 <div id="eventsContainer" class="container meetups-container">
 
-	{% for meetup in meetupsAll %}
+    {% for meetup in meetupsAll %}
 
-	<div data-members-limit="{{ meetup.members_limit }}"
+<div data-members-limit="{{ meetup.members_limit }}"
 		 data-topics="{% for topic in meetup.topics.all %}{{topic}} {% endfor %}"
 		 data-mensa="{{meetup.mensa}}"
 		 data-date="{{meetup.start_time|date:'d.m.Y'}}"
@@ -138,28 +127,30 @@
 		 data-author="{{meetup.author}}"
 		 data-users="{% for member in meetup.members.all %}{{member}} {% endfor %}"
 		 class="task-list-row">
-		<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
-			<h2>{{ meetup.title }}</h2>
-			<p class="article-content">{{ meetup.about }}</p>
-			<span class="date">Date: {{ meetup.start_time |date:"d.m.Y"}}</span>
-			<span class="time">Time: {{ meetup.start_time |date:"H:i"}}</span><br />
-			<p class="article-content">Mensa: {{ meetup.mensa }}</p>
-			<p class="article-content">Topics:
-				{% for topic in meetup.topics.all %}
-				{{ topic  }}
-				{% endfor %}
-			</p>
-			<p class="article-content">Author:{{ meetup.author }}</p>
-			<p class="article-content">Members:
-				{% for member in meetup.members.all %}
-				{{ member  }}
-				{% endfor %}
-			</p>
-			<button class="ml-auto btn btn-success join">Join</button>
-			<button class="ml-auto btn btn-danger leave">Leave</button>
-		</section>
-	</div>
-	{% endfor %}
+     <section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
+        <h2>{{ meetup.title }}</h2>
+        <p class="article-content">{{ meetup.about }}</p>
+        <span class="date">Date: {{ meetup.start_time |date:"d.m.Y"}}</span>
+        <span class="time">Time: {{ meetup.start_time |date:"H:i"}}</span><br />
+        <p class="article-content">Mensa: {{ meetup.mensa }}</p>
+        <p class="article-content">Topics: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</p>
+        <p class="article-content">Author:{{ meetup.author }}</p>
+        <p class="article-content">Members:{% for member in meetup.members.all %} {{ member }} {% endfor %}</p>
+        <form action="{% url 'join_meetup' meetup.id  %}">
+          <button type='submit' class="ml-auto btn btn-success join">Join</button>
+        </form>
+        <form action="{% url 'leave_meetup' meetup.id  %}">
+          <button type='submit' class="ml-auto btn btn-danger leave">Leave</button>
+        </form>
+     </section>
+</div>
+  
+  	{% endfor %}
+
+
+<a href="{% url 'meetup-create' %}" class="float">
+	<div class="my-float">+</div>
+</a>
 
 </div>
 
