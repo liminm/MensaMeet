@@ -91,8 +91,8 @@
 
 
 				<div class="form-group">
-					<label for="selectTime">Time</label><br>
-					<select id="time-filter" class="selectpicker" id="selectTime">
+					<label for="time-filter">Time</label><br>
+					<select id="time-filter" class="selectpicker">
 						<option data-time-after="" data-time-before="">Show All</option>
 						<option data-time-after="0000" data-time-before="1100">Before 11:00</option>
 						<option data-time-after="1100" data-time-before="1200">11:00-12:00</option>
@@ -134,13 +134,25 @@
 		 class="task-list-row">
      <section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
         <h2>{{ meetup.title }}</h2>
-        <p class="article-content">{{ meetup.about }}</p>
+        <span class="about">{{ meetup.about }}</span><br />
+         <span class="topics">Topics: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</span><br />
         <span class="date">Date: {{ meetup.start_time |date:"d.m.Y"}}</span>
-        <span class="time">Time: {{ meetup.start_time |date:"H:i"}}</span><br />
-        <p class="article-content">Mensa: {{ meetup.mensa }}</p>
-        <p class="article-content">Topics: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</p>
-        <p class="article-content">Author:{{ meetup.author }}</p>
-        <p class="article-content">Members:{% for member in meetup.members.all %} {{ member }} {% endfor %}</p>
+        <span class="time">Time: {{ meetup.start_time |date:"H:i"}}</span>
+        <span class="mensa">Mensa: {{ meetup.mensa }}</span><br />
+
+         <p class="article-content">
+             Author: <a href=""><img class="account-img" alt="profile picture" src="{{ meetup.author.profile.image.url }}"></a>
+
+         </p>
+         <div class="row members-row">
+             <p class="article-content list-members">Members:
+
+                 {% for member in meetup.members.all %}
+                 <a href=""><img class="account-img {{member}}" alt="profile picture" src="{{ member.profile.image.url }}"></a>
+                 {% endfor %}
+
+             </p>
+         </div>
         <form action="{% url 'join_meetup' meetup.id  %}">
           <button type='submit' class="ml-auto btn btn-success join">Join</button>
         </form>
