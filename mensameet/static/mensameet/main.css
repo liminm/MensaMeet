@@ -179,3 +179,128 @@ main {
     height:38px !important;
     margin-left:10px;
 }
+
+.form-group {
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.btn {
+	margin: 2px;
+}
+
+.collapsible {
+	margin-right: 10px;
+	border-radius: 10px;
+	background-color: #dccebc;
+	color: #353535;
+	cursor: pointer;
+	padding: 10px 15px 10px 15px;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+}
+
+.collapsible:hover {
+	background-color: #baaa96;
+}
+
+.content {
+	border-radius: 5px;
+	margin: 15px;
+	padding: 18px;
+	display: none;
+	background-color: rgba(220, 206, 188, 0.5);
+}
+
+.meetups-container {
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.filter-sort-buttons {
+    margin:20px;
+}
+
+.float {
+	position: fixed;
+	width: 70px;
+	height: 70px;
+	bottom: 50px;
+	right: 50px;
+	background-color: #999;
+	color: #FFF;
+	border-radius: 50px;
+	text-align: center;
+}
+
+.my-float {
+	font-size: 40px;
+}
+
+.datepicker {
+	font-family: Arial;
+	font-size: 15px;
+	padding: 10px;
+	text-align: center;
+}
+
+.datepicker-dropdown {
+	padding: 15px;
+}
+
+.datepicker table tr td.day:hover,
+.datepicker table tr td.focused {
+	background: #909090;
+	cursor: pointer;
+}
+
+.datepicker table tr td.old,
+.datepicker table tr td.new {
+	color: #808080;
+}
+
+.datepicker table tr td.today {
+	color: #184830;
+	background-color: #FFA953;
+	border-color: #FFB76F;
+}
+
+.datepicker table tr td,
+.datepicker table tr th {
+	text-align: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 4px;
+}
+
+.datepicker .prev:hover,
+.datepicker .next:hover,
+.datepicker tfoot tr th:hover {
+	cursor: pointer;
+	background: #909090;
+}
+
+.datepicker .active {
+	background-color: #888;
+}
+
+.clear-date {
+    width:100px !important;
+    height:38px !important;
+    margin-left:10px;
+}
+
+.account-img {
+    width:40px !important;
+    height:40px !important;
+    border-radius:10px !important;
+    margin-right:5px;
+    object-fit: cover;
+}
+
+.members-row {
+    margin-left:5px;
+}
+
