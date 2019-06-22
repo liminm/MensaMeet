@@ -139,13 +139,19 @@ for (var i = 0; i < btns.length; i++) {
 <div class=" filterTopic filterTechnology visible "> 
 <section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
     <h2>{{ meetup.title }}</h2>
-    <span class="date-time">{{ meetup.start_time }}</span><br />
- <p class="article-content">{{ meetup.about }}</p>
-          <p class="article-content">Topics:{{ meetup.topics }}</p>
+
+    <span class="date-time">{{ meetup.start_time|date:'d.M.Y' }} {{ meetup.start_time|date:'H:m' }}</span><br />
+         <p class="article-content">{{ meetup.about }}</p>
+         <p class="article-content">Topics: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</p>
          <p class="article-content">Author:{{ meetup.author }}</p>
-        <p class="article-content">Members:{{ meetup.members }}</p>
-    <button class="ml-auto btn btn-success join">Join</button>
-    <button class="ml-auto btn btn-danger leave">Leave</button>
+         <p class="article-content">Members:{% for member in meetup.members.all %} {{ member }} {% endfor %}</p>
+    <form action="{% url 'join_meetup' meetup.id  %}">
+      <button type='submit' class="ml-auto btn btn-success join">Join</button>
+    </form>
+    <form action="{% url 'leave_meetup' meetup.id  %}">
+      <button type='submit' class="ml-auto btn btn-danger leave">Leave</button>
+    </form>
+
   </section>
 </div>
 

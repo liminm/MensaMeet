@@ -50,6 +50,25 @@ def profile(request):
 		}	
 	return render(request, 'users/profile.html', context)	
 
+@login_required
+def leaveMeetup(request, pk):
+	OurUser = request.user
+	#OurMeetup = OurUser.my_meetups.get(id=pk)
+	OurMeetup = OurUser.meetups_i_am_in.get(id=pk)
+	OurMeetup.members.remove(OurUser)
+	#OurUser.my_meetups.remove(OurMeetup)
+	if OurMeetup.author == OurUser:
+		OurMeetup.delete()
+	messages.success(request, f'You have left this meetup! {OurMeetup.author}')
+	return render(request, 'users/ownmeetups.html')
+
+@login_required
+def joinMeetup(request, pk):
+	OurUser = request.user
+	OurMeetup = Meetup.objects.get(id=pk)
+	OurMeetup.members.add(OurUser)
+	messages.success(request, f'You have joined in this meetup!')
+	return render(request, 'users/ownmeetups.html')
 
 class MeetupListView(LoginRequiredMixin, ListView):
 	model = Meetup
@@ -132,3 +151,4 @@ class MeetupDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == meetup.author:
 			return True
 		return False
+		
