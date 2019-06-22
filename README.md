@@ -66,7 +66,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Milan Szoszkiewicz** - *Initial work* - [szosk](https://github.com/szosk)
+* **Milan Szoszkiewicz** - *Initial work* - [szoszk](https://github.com/szoszk)
 
 See also the list of [contributors](https://github.com/szoszk/MensaMeet/graphs/contributors) who participated in this project.
 
