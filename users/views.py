@@ -58,7 +58,11 @@ def leaveMeetup(request, pk):
 	OurMeetup.members.remove(OurUser)
 	#OurUser.my_meetups.remove(OurMeetup)
 	if OurMeetup.author == OurUser:
-		OurMeetup.delete()
+		if OurMeetup.members.exists():
+			OurMeetup.author = OurMeetup.members.all()[0]
+			OurMeetup.save()	
+		else:
+			OurMeetup.delete()			
 	messages.success(request, f'You have left this meetup! {OurMeetup.author}')
 	return render(request, 'users/ownmeetups.html')
 
