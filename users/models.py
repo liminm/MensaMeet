@@ -43,7 +43,7 @@ class Meetup(models.Model):
     date_posted = models.DateTimeField(default = timezone.now)
     start_time = models.DateTimeField(default = timezone.now)
 
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="my_meetups")
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="my_meetups")
     # has
     topics = models.ManyToManyField(Topic, null=False)
     # joined by
