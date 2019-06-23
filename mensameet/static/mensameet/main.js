@@ -11,6 +11,33 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+var field_username = document.getElementsByClassName("input-username");
+var tool_user = document.getElementById("tooltip-username");
+  field_username[0].addEventListener("focus", function() {
+      tool_user.style.display = "block";
+  });
+  field_username[0].addEventListener("blur", function() {
+        tool_user.style.display = "none";
+  });
+
+var field_password = document.getElementsByClassName("input-password");
+var tool_password = document.getElementById("tooltip-password");
+  field_password[0].addEventListener("focus", function() {
+      tool_password.style.display = "block";
+  });
+  field_password[0].addEventListener("blur", function() {
+        tool_password.style.display = "none";
+  });
+
+var field_password_confirm = document.getElementsByClassName("input-password-confirm");
+var tool_password_confirm = document.getElementById("tooltip-password-confirm");
+  field_password_confirm[0].addEventListener("focus", function() {
+      tool_password_confirm.style.display = "block";
+  });
+  field_password_confirm[0].addEventListener("blur", function() {
+        tool_password_confirm.style.display = "none";
+  });
+
 var membersFilter, topicsFilter, topicsFilterArr, mensaFilter, dateFilter, timeFilterBefore, timeFilterAfter;
 function updateFilters() {
   $('.task-list-row').hide().filter(function() {

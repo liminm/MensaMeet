@@ -10,43 +10,57 @@
                   <div class="icon"></div>
                   <div class="title text-center">MensaMeet</div>
 
-<!--
-                  <form action="#" name="registration">
-                     <div class="form-group">
-                        <label id="firstnameHelp" for="firstname">Vorname</label>
-                        <input type="text"  name="firstname" class="form-control" id="firstname" aria-describedby="firstnameHelp" placeholder="Vorname eingeben">
-                     </div>
-                     <div class="form-group">
-                        <label id="lastnameHelp" for="lastname">Nachname</label>
-                        <input type="text"  name="lastname" class="form-control" id="lastname" aria-describedby="lastnameHelp" placeholder="Nachname eingeben">
-                     </div>
-                     <div class="form-group">
-                        <label id="emailHelp" for="email">Email Adresse</label>
-                        <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email eingeben">
-                     </div>
-                     <div class="form-group">
-                        <label id="passwordHelp" for="password">Passwort</label>
-                        <input type="password" name="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Passwort eingeben">
-                     </div>
-
-                     <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-block submit-btn btn-secondary">Registrieren</button>
-                     </div>
-
-                     <div class="col-md-12">
-                        <div class="form-group">
-                     <p class="text-center">Du hast schon einen Account? <br><a href="{% url 'mensameet-login' %}" id="signup">Melde dich jetzt an!</a></p>
-                  </div>
-                     </div>
-                  </form>
--->
-
                   <form method="POST">
 
                      {% csrf_token %}
                      <fieldset class="form-group">
-                        {{ form|crispy }}
+
+                         <div class="form-group">
+                             <label for="username">Username*</label>
+                             {{ form.username|as_crispy_field }}
+                             <input required type="text" name="username" class="form-control input-username" id="username">
+
+                             <div id ="tooltip-username" class="content-tooltip">
+
+                                 <small class="text-muted">
+                                     • Must be a minimum of 5 characters and a maximum 32 characters.<br>
+                                     • Only letters, numbers, '-', '.', and '_' may be used.
+                                     </small>
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             <label for="email">Email*</label>
+                             <input required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  type="text"  name="email" class="form-control input-email" id="email">
+                         </div>
+
+                         <div class="form-group">
+                             <label for="password">Password*</label>
+                             <input required type="text"  name="password" class="form-control input-password" id="password">
+
+                             <div id ="tooltip-password" class="content-tooltip">
+                                 <small class="text-muted">
+                                     • Must contain at least 8 characters.<br>
+                                     • Can't be entirely numeric.<br>
+                                     • Can't be too similar to your other personal information.<br>
+                                     • Shouldn't be a commonly used password.
+                                 </small>
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             <label for="password-confirm">Password confirmation*</label>
+                             <input required type="text"  name="password-confirm" class="form-control input-password-confirm" id="password-confirm">
+
+                             <div id ="tooltip-password-confirm" class="content-tooltip">
+                                 <small class="text-muted">
+                                     Enter the same password as before for confirmation.
+                                 </small>
+                             </div>
+                         </div>
+
                      </fieldset>
+
 
                      <div class="form-group">
                         <button type="submit" class="btn btn-block submit-btn btn-secondary">Register</button>
