@@ -189,6 +189,11 @@ main {
 	margin: 2px;
 }
 
+.btn-custom {
+	margin-left: 10px;
+}
+
+
 .collapsible {
 	margin-right: 10px;
 	border-radius: 10px;
@@ -292,15 +297,17 @@ main {
     margin-left:10px;
 }
 
+
 .account-img {
-    width:40px !important;
-    height:40px !important;
-    border-radius:10px !important;
+    width:40px;
+    height:40px;
+    border-radius:10px;
     margin-right:5px;
     object-fit: cover;
 }
 
+
 .members-row {
-    margin-left:5px;
+    margin-left:3px;
 }
 

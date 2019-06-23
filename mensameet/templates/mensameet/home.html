@@ -133,32 +133,44 @@
 		 data-users="{% for member in meetup.members.all %}{{member}} {% endfor %}"
 		 class="task-list-row">
      <section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
-        <h2>{{ meetup.title }}</h2>
-        <span class="about">{{ meetup.about }}</span><br />
-         <span class="topics">Topics: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</span><br />
-        <span class="date">Date: {{ meetup.start_time |date:"d.m.Y"}}</span>
-        <span class="time">Time: {{ meetup.start_time |date:"H:i"}}</span>
-        <span class="mensa">Mensa: {{ meetup.mensa }}</span><br />
+		 <h2>{{ meetup.title }}</h2>
+		 <div class="row">
 
-         <p class="article-content">
-             Author: <a href=""><img class="account-img" alt="profile picture" src="{{ meetup.author.profile.image.url }}"></a>
+			 <div class="col-md-6">
 
-         </p>
-         <div class="row members-row">
-             <p class="article-content list-members">Members:
+				 <p class="about">{{ meetup.about }}</p>
+				 <p class="topics">Topics: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</p>
+				 <p class="article-content">
+					 Author: <a href=""><img class="account-img" alt="profile picture" src="{{ meetup.author.profile.image.url }}"></a>
 
-                 {% for member in meetup.members.all %}
-                 <a href=""><img class="account-img {{member}}" alt="profile picture" src="{{ member.profile.image.url }}"></a>
-                 {% endfor %}
+				 </p>
 
-             </p>
-         </div>
-        <form action="{% url 'join_meetup' meetup.id  %}">
-          <button type='submit' class="ml-auto btn btn-success join">Join</button>
-        </form>
-        <form action="{% url 'leave_meetup' meetup.id  %}">
-          <button type='submit' class="ml-auto btn btn-danger leave">Leave</button>
-        </form>
+				 <div class="row members-row">
+					 <p class="article-content list-members">Members:
+
+						 {% for member in meetup.members.all %}
+						 <a href=""><img class="account-img {{member}}" alt="profile picture" src="{{ member.profile.image.url }}"></a>
+						 {% endfor %}
+
+					 </p>
+				 </div>
+
+			 </div>
+			 <div class="col-md-6">
+				 <p class="col-xs-12 date">&nbsp;<i class="fa fa-calendar-o"></i>&nbsp;{{ meetup.start_time |date:"d.m.Y"}}</p>
+				 <p class="col-xs-12 time">&nbsp;<i class="fa fa-clock-o"></i>&nbsp;{{ meetup.start_time |date:"H:i"}}</p>
+				 <p class="col-xs-12 mensa">&nbsp;<i class="fa fa-map-marker"></i>&nbsp;{{ meetup.mensa }}</p>
+				 <div class="row">
+				 <form action="{% url 'join_meetup' meetup.id  %}">&nbsp;
+					 <button type='submit' class="btn btn-custom btn-info join">Join</button>
+				 </form>
+				 <form action="{% url 'leave_meetup' meetup.id  %}">
+					 <button type='submit' class="btn btn-custom btn-dark leave">Leave</button>
+				 </form>
+				 </div>
+			 </div>
+		 </div>
+
      </section>
 </div>
 
