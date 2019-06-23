@@ -17,9 +17,14 @@ def register(request):
 	if request.method == 'POST':
 		form = UserRegisterForm(request.POST)
 		if form.is_valid():
-			form.save()
-			username = form.cleaned_data.get('username')
-			messages.success(request, f'Account created for {username}!')
+			post = form.save(commit=False)
+			post.email = form.cleaned_data['email']
+			post.username = form.cleaned_data['username']
+			post.password1 = form.cleaned_data['password1']
+			post.password2 = form.cleaned_data['password2']
+
+			post.save()
+			messages.success(request, 'Account successfully created')
 			return redirect('mensameet-home')
 	else:
 		form = UserRegisterForm()

@@ -17,7 +17,6 @@
 
                          <div class="form-group">
                              <label for="username">Username*</label>
-                             {{ form.username|as_crispy_field }}
                              <input required type="text" name="username" class="form-control input-username" id="username">
 
                              <div id ="tooltip-username" class="content-tooltip">
@@ -36,7 +35,7 @@
 
                          <div class="form-group">
                              <label for="password">Password*</label>
-                             <input required type="text"  name="password" class="form-control input-password" id="password">
+                             <input required type="text"  name="password1" class="form-control input-password" id="password">
 
                              <div id ="tooltip-password" class="content-tooltip">
                                  <small class="text-muted">
@@ -50,7 +49,7 @@
 
                          <div class="form-group">
                              <label for="password-confirm">Password confirmation*</label>
-                             <input required type="text"  name="password-confirm" class="form-control input-password-confirm" id="password-confirm">
+                             <input required type="text"  name="password2" class="form-control input-password-confirm" id="password-confirm">
 
                              <div id ="tooltip-password-confirm" class="content-tooltip">
                                  <small class="text-muted">
