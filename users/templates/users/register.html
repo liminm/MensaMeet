@@ -15,29 +15,26 @@
                      {% csrf_token %}
                      <fieldset class="form-group">
 
-                         <div class="form-group">
-                             <label for="username">Username*</label>
-                             <input required type="text" name="username" class="form-control input-username" id="username">
+                         <div class="input-username" id="username">
+                             {{form.username|as_crispy_field}}
 
-                             <div id ="tooltip-username" class="content-tooltip">
-
+                             <div id ="tooltip-username" class="content-tooltip form-group">
                                  <small class="text-muted">
                                      • Must be a minimum of 5 characters and a maximum 32 characters.<br>
                                      • Only letters, numbers, '-', '.', and '_' may be used.
-                                     </small>
+                                 </small>
                              </div>
                          </div>
 
-                         <div class="form-group">
-                             <label for="email">Email*</label>
-                             <input required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  type="text"  name="email" class="form-control input-email" id="email">
+                         <div class="input-email" id="email">
+                         {{form.email|as_crispy_field}}
                          </div>
 
-                         <div class="form-group">
-                             <label for="password">Password*</label>
-                             <input required type="text"  name="password1" class="form-control input-password" id="password">
 
-                             <div id ="tooltip-password" class="content-tooltip">
+                         <div class="input-password1" id="password1">
+                             {{form.password1|as_crispy_field}}
+
+                             <div id ="tooltip-password" class="content-tooltip form-group">
                                  <small class="text-muted">
                                      • Must contain at least 8 characters.<br>
                                      • Can't be entirely numeric.<br>
@@ -47,11 +44,10 @@
                              </div>
                          </div>
 
-                         <div class="form-group">
-                             <label for="password-confirm">Password confirmation*</label>
-                             <input required type="text"  name="password2" class="form-control input-password-confirm" id="password-confirm">
 
-                             <div id ="tooltip-password-confirm" class="content-tooltip">
+                         <div class="input-password2" id="password2">
+                             {{form.password2|as_crispy_field}}
+                             <div id ="tooltip-password2" class="content-tooltip form-group">
                                  <small class="text-muted">
                                      Enter the same password as before for confirmation.
                                  </small>
@@ -62,14 +58,12 @@
 
 
                      <div class="form-group">
-                        <button type="submit" class="btn btn-block submit-btn btn-secondary">Register</button>
-                     </div>
+                        <button type="submit" class="btn btn-block submit-btn btn-secondary">Register</button><br>
 
-                     <div class="form-group">
                         <p class="text-center">Already have an account? <a href="{% url 'mensameet-login' %}" id="signup">Login here</a></p>
                      </div>
                   </form>
-
+                
             </div>
       </div>
 </div>

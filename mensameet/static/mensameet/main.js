@@ -11,31 +11,32 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-var field_username = document.getElementsByClassName("input-username");
+var field_username = document.getElementById("id_username");
 var tool_user = document.getElementById("tooltip-username");
-  field_username[0].addEventListener("focus", function() {
+  field_username.addEventListener("focus", function() {
       tool_user.style.display = "block";
   });
-  field_username[0].addEventListener("blur", function() {
+  field_username.addEventListener("blur", function() {
         tool_user.style.display = "none";
   });
 
-var field_password = document.getElementsByClassName("input-password");
+var field_password = document.getElementById("id_password1");
 var tool_password = document.getElementById("tooltip-password");
-  field_password[0].addEventListener("focus", function() {
+  field_password.addEventListener("focus", function() {
       tool_password.style.display = "block";
   });
-  field_password[0].addEventListener("blur", function() {
+  field_password.addEventListener("blur", function() {
         tool_password.style.display = "none";
   });
 
-var field_password_confirm = document.getElementsByClassName("input-password-confirm");
-var tool_password_confirm = document.getElementById("tooltip-password-confirm");
-  field_password_confirm[0].addEventListener("focus", function() {
-      tool_password_confirm.style.display = "block";
+
+var field_password2 = document.getElementById("id_password2");
+var tool_password2 = document.getElementById("tooltip-password2");
+  field_password2.addEventListener("focus", function() {
+      tool_password2.style.display = "block";
   });
-  field_password_confirm[0].addEventListener("blur", function() {
-        tool_password_confirm.style.display = "none";
+  field_password2.addEventListener("blur", function() {
+        tool_password2.style.display = "none";
   });
 
 var membersFilter, topicsFilter, topicsFilterArr, mensaFilter, dateFilter, timeFilterBefore, timeFilterAfter;
