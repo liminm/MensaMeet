@@ -3,6 +3,11 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from PIL import Image
 from django.urls import reverse
+from time import strftime, gmtime
+from datetime import date
+from datetime import datetime
+
+
 
 class Topic(models.Model):
     title = models.CharField(max_length=100)
@@ -67,4 +72,8 @@ class Meetup(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('meetup-detail', kwargs={'pk': self.pk})    
+        return reverse('meetup-detail', kwargs={'pk': self.pk})
+
+    def cur_date(self):
+
+        return datetime.now()
