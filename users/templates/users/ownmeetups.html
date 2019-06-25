@@ -22,10 +22,15 @@
 
     <section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
         <h2><a class="article-title" href="{% url 'meetup-detail' meetup.id %}">{{ meetup.title }}</a></h2>
-        <span class="about">About: {{ meetup.about }} </span><br />
-        <span class="date-time">Startzeit: {{ meetup.start_time|date:'d.M.Y' }} {{ meetup.start_time|date:'H:m' }}</span><br />
-        <span class="topics">Themen: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</span><br />
-        <span class="participants"><small>Mitglieder: {% for member in meetup.members.all %} {{ member }} {% endfor %}</small></span><br />
+        <span class="about">{{ meetup.about }} </span><br />
+
+        <span class="topics">Topics: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</span><br />
+
+        <span class="date">Date: {{ meetup.start_time |date:"d.m.Y"}}</span>
+        <span class="time">Time: {{ meetup.start_time |date:"H:i"}}</span>
+        <span class="mensa">Mensa: {{ meetup.mensa }}</span><br />
+
+        <span class="participants"><small>Members: {% for member in meetup.members.all %} {{ member }} {% endfor %}</small></span><br />
         <form action="{% url 'join_meetup' meetup.id  %}">
             <button type='submit' class="ml-auto btn btn-success join">Join</button>
         </form>

@@ -5,7 +5,7 @@
 	<header class="site-header">
 	   <nav class="shadow navbar navbar-expand-md navbar-light bg-steel fixed-top">
 	      <div class="container">
-	      	
+
             <a class="title text-center navbar-brand mr-4 title-nav" style="font-size: 25px; color:#303030; margin-left:15px;" href="{% url 'mensameet-home' %}">MensaMeet</a>
 
 	         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +15,7 @@
 	            <ul class="navbar-nav ml-auto">
 	               {% if user.is_authenticated %}
 	               <li class="nav-item">
-	                  <a class="nav-link" href="{% url 'meetup-home' %}">Meine Meetups</a>
+	                  <a class="nav-link" href="{% url 'meetup-home' %}">My Meetups</a>
 	               </li>
 	               <li class="nav-item">
 	                  <a class="nav-link" href="{% url 'profile' %}">Profile</a>
