@@ -11,6 +11,34 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+var field_username = document.getElementById("id_username");
+var tool_user = document.getElementById("tooltip-username");
+  field_username.addEventListener("focus", function() {
+      tool_user.style.display = "block";
+  });
+  field_username.addEventListener("blur", function() {
+        tool_user.style.display = "none";
+  });
+
+var field_password = document.getElementById("id_password1");
+var tool_password = document.getElementById("tooltip-password");
+  field_password.addEventListener("focus", function() {
+      tool_password.style.display = "block";
+  });
+  field_password.addEventListener("blur", function() {
+        tool_password.style.display = "none";
+  });
+
+
+var field_password2 = document.getElementById("id_password2");
+var tool_password2 = document.getElementById("tooltip-password2");
+  field_password2.addEventListener("focus", function() {
+      tool_password2.style.display = "block";
+  });
+  field_password2.addEventListener("blur", function() {
+        tool_password2.style.display = "none";
+  });
+
 var membersFilter, topicsFilter, topicsFilterArr, mensaFilter, dateFilter, timeFilterBefore, timeFilterAfter;
 function updateFilters() {
   $('.task-list-row').hide().filter(function() {
