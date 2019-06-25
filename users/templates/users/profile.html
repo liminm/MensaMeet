@@ -14,17 +14,21 @@
                 <div class=" col-xs-8 col-lg-4">
                   <img class="mx-auto text-center mx-auto rounded-circle account-img" alt="profile picture" src="{{ user.profile.image.url }}">
                 </div>
-                <div class="mx-auto col-xs-2 col-lg-6 align-middle">
-                  <h2 class="account-heading">{{ user.username }}</h2>
-                  <p class="text-secondary">{{ user.email }}</p>
-                  <p class="text-secondary">{{ user.profile.gender }}</p>
-                  <p class="text-secondary">{{ user.profile.about }}</p>
-
-                  <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
-                    Edit profile
-                  </button>
+                <div class="mx-auto col-xs-2 col-lg-6">
+                  <div>
+                    <h2 class="account-heading">{{ user.username }}</h2>
+                    <p class="text-secondary">{{ user.email }}</p>
+                    <p class="text-secondary">{{ user.profile.gender }}</p>
+                    <p class="text-secondary">{{ user.profile.about }}</p>
+                  </div>
+                  <div class=" align-bottom">
+                    <button type="button" class="btn btn-secondary  align-bottom" data-toggle="modal" data-target="#exampleModal">
+                      Edit profile
+                    </button>
+                  </div>
 
                 </div>
+
 
               </div>
             </div>
