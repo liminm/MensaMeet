@@ -4,28 +4,89 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
+
     <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" alt="profile picture" src="{{ user.profile.image.url }}">
+        <div class="card border-light rounded p-5">
+          <div class="card-block">
             <div class="media-body">
-                <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
-                <p class="text-secondary">{{ user.profile.gender }}</p>
-                <p class="text-secondary">{{ user.profile.about }}</p>
-                <p class="text-secondary">{{ user.profile.topics }}</p>
+              <div class="row">
+                <div class=" col-xs-8 col-lg-4">
+                  <img class="mx-auto text-center mx-auto rounded-circle account-img" alt="profile picture" src="{{ user.profile.image.url }}">
+                </div>
+                <div class="mx-auto col-xs-2 col-lg-6 align-middle">
+                  <h2 class="account-heading">{{ user.username }}</h2>
+                  <p class="text-secondary">{{ user.email }}</p>
+                  <p class="text-secondary">{{ user.profile.gender }}</p>
+                  <p class="text-secondary">{{ user.profile.about }}</p>
+
+                  <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                    Edit profile
+                  </button>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="card border-light rounded mt-3 ">
+          <div class="card-block">
+            <div class="media-body">
+              <div class="row">
+                <div class ="mx-auto col-xs-10 algin-middle">
+                  <p class="mx-auto">
+                    <p class="account-heading" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      Topics of Interest
+                    </p>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="collapse mb-3" id="collapseExample" >
+          <div class="card card-body">
+            <div class="topics"> {% for topic in user.profile.topics.all %}
+              <button type="button" class= "btn btn-light">{{ topic }} </button>
+              {% endfor %}</div>
             </div>
         </div>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Information</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
-                {{ t_form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update</button>
+
+
+
+
+      </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-        </form>
-    </div>
+            <div class="modal-body">
+              <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <fieldset class="form-group">
+                      {{ u_form|crispy }}
+                      {{ p_form|crispy }}
+                      {{ t_form|crispy }}
+                  </fieldset>
+                  <div class="form-group">
+                      <button class="btn btn-outline-info" type="submit">Update</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
 {% endblock content %}
