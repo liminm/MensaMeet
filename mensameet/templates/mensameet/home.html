@@ -151,7 +151,7 @@
 					 <p class="article-content list-members">Members:
 
 						 {% for member in meetup.members.all %}
-						 <a href=""><img class="account-img {{member}}" alt="profile picture" src="{{ member.profile.image.url }}"></a>
+						 <a href={% url 'profile-detail' member.profile.id %}><img class="account-img {{member}}" alt="profile picture" src="{{ member.profile.image.url }}"></a>
 						 {% endfor %}
 
 					 </p>
