@@ -123,8 +123,10 @@
 <div id="eventsContainer" class="container meetups-container">
 
     {% for meetup in meetupsAll %}
+		{% if meetup.cur_date|date:"d.m.Y" <  meetup.start_time|date:"d.m.Y"  %}
 
-<div data-members-limit="{{ meetup.members_limit }}"
+
+	<div data-members-limit="{{ meetup.members_limit }}"
 		 data-topics="{% for topic in meetup.topics.all %}{{topic}} {% endfor %}"
 		 data-mensa="{{meetup.mensa}}"
 		 data-date="{{meetup.start_time|date:'d.m.Y'}}"
@@ -149,6 +151,8 @@
         </form>
      </section>
 </div>
+
+		{% endif %}
   
   	{% endfor %}
 
