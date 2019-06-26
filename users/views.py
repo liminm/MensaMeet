@@ -3,7 +3,7 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TopicsUpdateForm, MeetupCreateForm, MeetupUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Meetup, Topic
+from .models import Meetup, Topic, Profile
 from django.views.generic import (
 	TemplateView,
 	ListView,
@@ -55,6 +55,9 @@ def profile(request):
 		}	
 	return render(request, 'users/profile.html', context)	
 
+class ProfileDetailView(LoginRequiredMixin, DetailView):
+	model = Profile
+
 @login_required
 def leaveMeetup(request, pk):
 	OurUser = request.user
@@ -90,7 +93,7 @@ class MeetupListView(LoginRequiredMixin, ListView):
 	context_object_name = 'meetups'
 	ordering = ['-date_posted']
 
-class MeetupDetailView(DetailView):
+class MeetupDetailView(LoginRequiredMixin, DetailView):
 	model = Meetup
 
 class MeetupCreateView(LoginRequiredMixin, CreateView):
