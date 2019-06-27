@@ -50,7 +50,7 @@ class Meetup(models.Model):
 
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="my_meetups")
     # has
-    topics = models.ManyToManyField(Topic, null=False)
+    topics = models.ManyToManyField(Topic)
     # joined by
     members = models.ManyToManyField(User, related_name="meetups_i_am_in")
 

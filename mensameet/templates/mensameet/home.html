@@ -163,9 +163,11 @@
 				 <p class="col-xs-12 time">&nbsp;<i class="fa fa-clock-o"></i>&nbsp;{{ meetup.start_time |date:"H:i"}}</p>
 				 <p class="col-xs-12 mensa">&nbsp;<i class="fa fa-map-marker"></i>&nbsp;{{ meetup.mensa }}</p>
 				 <div class="row">
+					 {% if request.user not in meetup.members.all %}
 				 <form action="{% url 'join_meetup' meetup.id  %}">&nbsp;
 					 <button type='submit' class="btn btn-custom btn-info join">Join</button>
 				 </form>
+					  {% endif %}
 				 <form action="{% url 'leave_meetup' meetup.id  %}">
 					 <button type='submit' class="btn btn-custom btn-dark leave">Leave</button>
 				 </form>

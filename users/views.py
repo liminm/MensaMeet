@@ -61,26 +61,24 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 @login_required
 def leaveMeetup(request, pk):
 	OurUser = request.user
-	#OurMeetup = OurUser.my_meetups.get(id=pk)
 	OurMeetup = OurUser.meetups_i_am_in.get(id=pk)
 	OurMeetup.members.remove(OurUser)
-	#OurUser.my_meetups.remove(OurMeetup)
 	if OurMeetup.author == OurUser:
 		if OurMeetup.members.exists():
 			OurMeetup.author = OurMeetup.members.all()[0]
 			OurMeetup.save()	
 		else:
 			OurMeetup.delete()			
-	messages.success(request, f'You have left this meetup! {OurMeetup.author}')
-	return render(request, 'users/ownmeetups.html')
+	messages.success(request, f'You have left {OurMeetup.title}!')
+	return redirect('mensameet-home')
 
 @login_required
 def joinMeetup(request, pk):
 	OurUser = request.user
 	OurMeetup = Meetup.objects.get(id=pk)
 	OurMeetup.members.add(OurUser)
-	messages.success(request, f'You have joined in this meetup!')
-	return render(request, 'users/ownmeetups.html')	
+	messages.success(request, f'You have joined {OurMeetup.title}!')
+	return redirect('mensameet-home')
 
 class MeetupListView(LoginRequiredMixin, ListView):
 	model = Meetup
@@ -114,6 +112,7 @@ class MeetupCreateView(LoginRequiredMixin, CreateView):
 		context["form"] = form	
 
 		return context
+
 
 class MeetupUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Meetup
