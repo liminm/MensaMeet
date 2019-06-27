@@ -143,7 +143,7 @@
 				 <p class="about">{{ meetup.about }}</p>
 				 <p class="topics">Topics: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</p>
 				 <p class="article-content">
-					 Author: <a href=""><img class="account-img" alt="profile picture" src="{{ meetup.author.profile.image.url }}"></a>
+					 Author: <a href={% url 'profile-detail' meetup.author.profile.id %}><img class="account-img" alt="profile picture" src="{{ meetup.author.profile.image.url }}" title={{ meetup.author.profile.user }}></a>
 
 				 </p>
 
@@ -151,7 +151,7 @@
 					 <p class="article-content list-members">Members:
 
 						 {% for member in meetup.members.all %}
-						 <a href={% url 'profile-detail' member.profile.id %}><img class="account-img {{member}}" alt="profile picture" src="{{ member.profile.image.url }}"></a>
+						 <a href={% url 'profile-detail' member.profile.id %}><img class="account-img {{member}}" alt="profile picture" src="{{ member.profile.image.url }}" title={{ member.profile.user }}></a>
 						 {% endfor %}
 
 					 </p>
