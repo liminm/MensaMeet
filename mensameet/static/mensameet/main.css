@@ -202,7 +202,63 @@ main {
     object-fit: cover;
 }
 
+.card-style-over {
+    margin: 250px auto 40px auto;
+}
+
+.profile-img-over {
+    margin: -125px auto -5px auto;
+    width:200px;
+    height:200px;
+    border-radius:10px;
+    object-fit: cover;
+    border:2px solid rgba(0,0,0,.125);
+    box-shadow: 0 10px 25px 3px rgba(0,0,0,.14), 0 5px 20px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+.card-style-in {
+    margin: 50px auto 40px auto;
+}
+
+.profile-img {
+    margin: 0px auto -5px auto;
+    width:130px;
+    height:130px;
+    border-radius:10px;
+    object-fit: cover;
+    border:2px solid rgba(0,0,0,.125);
+}
+
+.profile-username {
+    text-align:center;
+    margin: 0px auto 10px auto;
+}
+
+.profile-about{
+    text-align:center;
+    margin: 0px auto 10px auto;
+    font-size:15px;
+    font-color:#d3d3d3;
+}
+
+.profile-topics {
+    text-align:center;
+    margin: 30px auto 30px auto;
+}
+
+.profile-topic {
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 5px;
+	background-color: #e3e3e3;
+	color: #353535;
+	padding: 10px;
+	border: none;
+	text-align: center;
+	outline: none;
+    font-size: 14px;
+}
+
 .members-row {
     margin-left:3px;
 }
-

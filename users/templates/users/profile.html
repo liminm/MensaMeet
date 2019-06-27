@@ -1,31 +1,46 @@
 {% extends 'mensameet/base_with_navigation.html' %}
-
-<!-- Necessary for the crispy form-->
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" alt="profile picture" src="{{ user.profile.image.url }}">
-            <div class="media-body">
-                <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
-                <p class="text-secondary">{{ user.profile.gender }}</p>
-                <p class="text-secondary">{{ user.profile.about }}</p>
-                <p class="text-secondary">{{ user.profile.topics }}</p>
+    <div class="row">
+
+        <div class="col-sm-4 card card-style-in h-50">
+            <div class="card-body">
+                        <div class="profile-username">
+                            <img class="rounded-circle profile-img" alt="profile picture" src="{{ user.profile.image.url }}">
+                            <h1 class="account-heading">{{ user.username }}</h1>
+                        </div>
+                        <div class="profile-about">
+                            <p class="text-secondary">{{ user.email }}</p>
+                        </div>
+                        <div class="profile-about">
+                            <p class="text-secondary">{{ user.profile.about }}</p>
+                        </div>
+                        <div class="row justify-content-center profile-topics">{% for topic in user.profile.topics.all %}
+                            <div class="profile-topic">
+                                {{topic}}
+                            </div>
+                            {% endfor %}
+                        </div>
+
+
             </div>
         </div>
+
+        <div class=" col-sm-7 card card-style-in">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            <br>
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Information</legend>
+                <legend class="border-bottom mb-3">Edit Profile Information</legend>
                 {{ u_form|crispy }}
                 {{ p_form|crispy }}
                 {{ t_form|crispy }}
             </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update</button>
+            <div class="form-group ">
+                <button class="btn btn-secondary " type="submit">Update</button>
             </div>
         </form>
+            </div>
     </div>
 {% endblock content %}

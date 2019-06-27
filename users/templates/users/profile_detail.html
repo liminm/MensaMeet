@@ -1,19 +1,27 @@
 {% extends 'mensameet/base_with_navigation.html' %}
-
-<!-- Necessary for the crispy form-->
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" alt="profile picture" src="{{ object.image }}">
-            <div class="media-body">
-                <h2 class="account-heading">{{ object.user }}</h2>
-                <p class="text-secondary">{{ object.email }}</p>
-                <p class="text-secondary">{{ object.gender }}</p>
-                <p class="text-secondary">{{ object.about }}</p>
-                <p class="text-secondary">{{ object.topics.all }}</p>
+        <div class="card card-style-over w-75">
+
+            <img class="rounded-circle profile-img-over" alt="profile picture" src="{{ object.image.url }}">
+            <div class="card-body">
+
+                <div class="profile-username">
+                    <h1 class="account-heading">{{ object.user }}</h1>
+                </div>
+                <div class="profile-about">
+                    <p class="text-secondary">{{ object.about }}</p>
+                </div>
+                <div class="row justify-content-center profile-topics">{% for topic in object.topics.all %}
+                    <div class="profile-topic">
+                        {{topic}}
+                    </div>
+                        {% endfor %}
+                </div>
+
             </div>
         </div>
-    </div>
+
+
 {% endblock content %}
