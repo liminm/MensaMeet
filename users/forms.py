@@ -30,31 +30,37 @@ class ProfileUpdateForm(forms.ModelForm):
 		fields = ['image', 'gender', 'about']
 
 class MeetupCreateForm(forms.ModelForm):
+	'''
 	topics = forms.ModelMultipleChoiceField(
 			queryset = Topic.objects.all(),
 			widget = forms.RadioSelect(),
 			required=True,
 	)
+	'''
 	class Meta:
 		model = Meetup
 		fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
 
 class MeetupUpdateForm(forms.ModelForm):
+	'''
 	topics = forms.ModelMultipleChoiceField(
 			queryset = Topic.objects.all(),
 			widget = forms.RadioSelect(),
 			required=True,
 	)
+	'''
 	class Meta:
 		model = Meetup
 		fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
 
 class TopicsUpdateForm(forms.ModelForm):
+	'''
 	topics = forms.ModelMultipleChoiceField(
 		queryset = Topic.objects.all(),
 		widget=forms.CheckboxSelectMultiple,
 		required=False
 	)
+	'''
 	class Meta:
 		model = Profile
 		fields = ['topics']
