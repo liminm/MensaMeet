@@ -1,1 +1,11 @@
-‘Whoever  dies  and  did  not perform  the  pilgrimage,  which  is  the  proof  of  Islam,  with  nothing having prevented him from it—being needy or ill—such that he cannot endure  the  pilgrimage,  or  the  Sultan  (i.e.,  the  government)  prevents him, then he dies as a Jew or a Christian.’
+certifi==2019.6.16
+Django==2.2.1
+django-crispy-forms==1.7.2
+gunicorn==19.9.0
+Pillow==6.0.0
+pip==19.0.3
+psycopg2==2.8.2
+pytz==2019.1
+setuptools==40.8.0
+sqlparse==0.3.0
+wheel==0.33.1
