@@ -167,10 +167,11 @@
 				 <form action="{% url 'join_meetup' meetup.id  %}">&nbsp;
 					 <button type='submit' class="btn btn-custom btn-info join">Join</button>
 				 </form>
-					  {% endif %}
+				 	 {% else %}
 				 <form action="{% url 'leave_meetup' meetup.id  %}">
 					 <button type='submit' class="btn btn-custom btn-dark leave">Leave</button>
 				 </form>
+				 	 {% endif %}
 				 </div>
 			 </div>
 		 </div>
