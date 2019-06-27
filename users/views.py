@@ -110,6 +110,7 @@ class MeetupCreateView(LoginRequiredMixin, CreateView):
 
 		return context
 
+
 class MeetupUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Meetup
 	fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']

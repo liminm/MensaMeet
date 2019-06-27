@@ -32,8 +32,8 @@ class ProfileUpdateForm(forms.ModelForm):
 class MeetupCreateForm(forms.ModelForm):
 	topics = forms.ModelMultipleChoiceField(
 			queryset = Topic.objects.all(),
-			widget = forms.CheckboxSelectMultiple,
-			required=True
+			widget = forms.RadioSelect(),
+			required=True,
 	)
 	class Meta:
 		model = Meetup
@@ -42,8 +42,8 @@ class MeetupCreateForm(forms.ModelForm):
 class MeetupUpdateForm(forms.ModelForm):
 	topics = forms.ModelMultipleChoiceField(
 			queryset = Topic.objects.all(),
-			widget = forms.CheckboxSelectMultiple,
-			required=True
+			widget = forms.RadioSelect(),
+			required=True,
 	)
 	class Meta:
 		model = Meetup
