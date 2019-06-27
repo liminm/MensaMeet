@@ -105,3 +105,5 @@ venv.bak/
 
 #local pythonpath
 .vscode/settings.json
+
+app\.yaml
