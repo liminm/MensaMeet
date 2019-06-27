@@ -1,5 +1,5 @@
 certifi==2019.6.16
-Django==2.2.1
+Django==2.2.2
 django-crispy-forms==1.7.2
 gunicorn==19.9.0
 Pillow==6.0.0
