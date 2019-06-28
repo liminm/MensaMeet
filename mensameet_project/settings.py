@@ -137,5 +137,7 @@ LOGIN_REDIRECT_URL = 'mensameet-home'
 # Where to redirect if trying to access a page, which requires login
 LOGIN_URL = 'mensameet-login'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
+
 
 
