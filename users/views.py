@@ -117,6 +117,7 @@ class MeetupCreateView(LoginRequiredMixin, CreateView):
 class MeetupUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Meetup
 	fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
+	success_url = '/mymeetups'
 	
 	def form_valid(self, form):
 		form.instance.author = self.request.user
