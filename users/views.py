@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TopicsUpdateForm, MeetupCreateForm, MeetupUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Meetup, Topic, Profile
+import os
 from django.views.generic import (
 	TemplateView,
 	ListView,
@@ -144,4 +147,11 @@ class MeetupDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == meetup.author:
 			return True
 		return False
-		
+
+def email(request):
+	subject = 'Thank you for changing your password'
+	message = ' it  means a world to us '
+	email_from = settings.EMAIL_HOST_USER
+	recipient_list = [{{ email }},]
+	send_mail( subject, message, email_from, recipient_list)
+	return redirect('password_reset_done')			
