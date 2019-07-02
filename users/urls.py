@@ -18,4 +18,5 @@ urlpatterns = [
     path('meetup/<int:pk>/leave/', views.leaveMeetup, name='leave_meetup'),
     path('meetup/<int:pk>/join/', views.joinMeetup, name='join_meetup'),
     path('user/<int:pk>/', ProfileDetailView.as_view(), name='profile-detail'),
+    path('user/delete/', views.deletemyprofile, name='profile-delete'),
 ]

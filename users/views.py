@@ -80,6 +80,13 @@ def joinMeetup(request, pk):
 	messages.success(request, f'You have joined {OurMeetup.title}!')
 	return redirect('mensameet-home')
 
+@login_required
+def deletemyprofile(request):
+	OurUser = request.user
+	OurUser.delete()
+	messages.success(request, f'You have succesfully deleted your account!')
+	return redirect('mensameet-login')
+
 class MeetupListView(LoginRequiredMixin, ListView):
 	model = Meetup
 
