@@ -6,7 +6,8 @@ from .views import (
     MeetupCreateView,
     MeetupUpdateView,
     MeetupDeleteView,
-    ProfileDetailView
+    ProfileDetailView,
+    ProfileDeleteView
 )
 
 urlpatterns = [
@@ -18,4 +19,5 @@ urlpatterns = [
     path('meetup/<int:pk>/leave/', views.leaveMeetup, name='leave_meetup'),
     path('meetup/<int:pk>/join/', views.joinMeetup, name='join_meetup'),
     path('user/<int:pk>/', ProfileDetailView.as_view(), name='profile-detail'),
+    path('user/<int:pk>/delete/', ProfileDeleteView.as_view(), name='profile-delete'),
 ]

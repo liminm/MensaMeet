@@ -41,6 +41,9 @@
                 <button class="btn btn-secondary " type="submit">Update</button>
             </div>
         </form>
+        <div class="form-group ">
+            <button class="btn btn-outline-danger" type="submit"><a href="{% url 'profile-delete' request.user.id %}">Delete Account</a></button>
+        </div>
             </div>
     </div>
 {% endblock content %}

@@ -5,8 +5,8 @@ from django.conf import settings
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TopicsUpdateForm, MeetupCreateForm, MeetupUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Meetup, Topic, Profile
 import os
+from .models import Meetup, Topic, Profile, User
 from django.views.generic import (
 	TemplateView,
 	ListView,
@@ -83,6 +83,13 @@ def joinMeetup(request, pk):
 	messages.success(request, f'You have joined {OurMeetup.title}!')
 	return redirect('mensameet-home')
 
+@login_required
+def deletemyprofile(request):
+	OurUser = request.user
+	OurUser.delete()
+	messages.success(request, f'You have succesfully deleted your account!')
+	return redirect('mensameet-login')
+
 class MeetupListView(LoginRequiredMixin, ListView):
 	model = Meetup
 
@@ -156,3 +163,14 @@ def email(request):
 	recipient_list = [{{ email }},]
 	send_mail( subject, message, email_from, recipient_list)
 	return redirect('password_reset_done')			
+
+class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+	model = User
+	success_url = '/login'
+
+	def test_func(self):
+		User = self.get_object()
+		if self.request.user == User:
+			return True
+		return False		
+		
