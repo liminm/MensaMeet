@@ -3,7 +3,7 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TopicsUpdateForm, MeetupCreateForm, MeetupUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Meetup, Topic, Profile
+from .models import Meetup, Topic, Profile, User
 from django.views.generic import (
 	TemplateView,
 	ListView,
@@ -152,4 +152,14 @@ class MeetupDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == meetup.author:
 			return True
 		return False
+
+class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+	model = User
+	success_url = '/login'
+
+	def test_func(self):
+		User = self.get_object()
+		if self.request.user == User:
+			return True
+		return False		
 		
