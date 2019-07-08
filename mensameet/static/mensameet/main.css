@@ -37,8 +37,16 @@ main {
 	background-color: #ffffff;
 	border-radius: 1.875rem;
 	outline: 0;
-	/* @TODO: remove and make width based on bootstrap "col-" classes */
 	max-width: 500px;
+	min-width: 400px;
+}
+
+.reset-form {
+	padding: 2.5rem;
+	background-color: #ffffff;
+	border-radius: 1.875rem;
+	outline: 0;
+	max-width: 800px;
 	min-width: 400px;
 }
 
