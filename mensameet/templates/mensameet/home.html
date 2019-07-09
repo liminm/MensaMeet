@@ -122,8 +122,11 @@
 
 <div id="eventsContainer" class="container meetups-container">
 
-    {% for meetup in meetupsAll %}
+	{% for meetup in meetupsAll %}
 		{% if meetup.cur_date|date:"d.m.Y" <  meetup.start_time|date:"d.m.Y"  %}
+			{% with meetup.members_limit as m %}
+			{% with meetup.members.all|length as l %}
+				{% if m == "TWO" and l < 2 or m == "THREE" and l < 3 or m == "FOUR" and l < 4 or m == "FIVE" and l < 5 or m == "SIX" and l < 6 or m == "SEVEN" and l < 7 or m == "EIGHT" and l < 8 %}
 
 
 	<div data-members-limit="{{ meetup.members_limit }}"
@@ -134,9 +137,10 @@
 		 data-author="{{meetup.author}}"
 		 data-users="{% for member in meetup.members.all %}{{member}} {% endfor %}"
 		 class="task-list-row">
-     <section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
-		 <h2>{{ meetup.title }}</h2>
-		 <div class="row">
+
+		<section id="events" class="mb-3 d-flex flex-column shadow bg-white rounded p-3">
+			<h2>{{ meetup.title }}</h2>
+			<div class="row">
 
 			 <div class="col-md-6">
 
@@ -167,19 +171,21 @@
 				 <form action="{% url 'join_meetup' meetup.id  %}">&nbsp;
 					 <button type='submit' class="btn btn-custom btn-info join">Join</button>
 				 </form>
-				 	 {% else %}
+					 {% else %}
 				 <form action="{% url 'leave_meetup' meetup.id  %}">
 					 <button type='submit' class="btn btn-custom btn-dark leave">Leave</button>
 				 </form>
-				 	 {% endif %}
+					 {% endif %}
 				 </div>
 			 </div>
-		 </div>
-
-     </section>
+			</div>
+		</section>
 </div>
-	{% endif %}
-  	{% endfor %}
+				{% endif %}
+			{% endwith %}
+			{% endwith %}
+		{% endif %}
+	{% endfor %}
 
 
 <a href="{% url 'meetup-create' %}" class="float">
