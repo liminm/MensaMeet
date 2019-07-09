@@ -19,7 +19,31 @@
     </head>
     <body>
 
+
+
         {% block navigation %}{% endblock %}
+
+        <script> $(document).ready(function() {
+          $('#global-modal').modal('show');
+        });
+        </script>
+
+          <div class="modal fade" id="global-modal" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class= "modal-title"> Privacy Disclaimer</h5>
+                  <button type="button" class="close" style="margin-top: -16px; font-size: 28px;" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class = "modal-body">
+                  <p> This is a temporary test page. All user data will be deleted by August 1, 2019.
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <main role="main" class="container">
 
