@@ -123,14 +123,24 @@ main {
 
 .float {
 	position: fixed;
-	width: 70px;
-	height: 70px;
+	width: 80px;
+	height: 80px;
 	bottom: 50px;
 	right: 50px;
+	padding:10px;
 	background-color: #999;
 	color: #FFF;
-	border-radius: 50px;
+	border-radius: 40px;
 	text-align: center;
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
 }
 
 .my-float {
