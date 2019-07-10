@@ -141,7 +141,16 @@
 			 <div class="col-md-6">
 
 				 <p class="about">{{ meetup.about }}</p>
-				 <p class="topics">Topics: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</p>
+
+				 <div class="row justify-content-left meetup-topics text-left"> {% for topic in meetup.topics.all %}
+					 <div class = "meetup-topic text-left">
+						  {{ topic }}
+					 </div>
+					 {% endfor %}
+					</div>
+
+
+
 				 <p class="article-content">
 					 Author: <a href={% url 'profile-detail' meetup.author.profile.id %}><img class="account-img" alt="profile picture" src="{{ meetup.author.profile.image.url }}" title={{ meetup.author.profile.user }}></a>
 
@@ -190,4 +199,3 @@
 
 
 {% endblock content %}
-

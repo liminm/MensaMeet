@@ -259,6 +259,24 @@ main {
     font-size: 14px;
 }
 
+.meetup-topics {
+    text-align:left;
+    margin: 30px auto 30px auto;
+
+}
+
+.meetup-topic {
+	margin: 5px;
+	border-radius: 5px;
+	background-color: #e3e3e3;
+	color: #353535;
+	padding: 10px;
+	border: none;
+	text-align: left;
+	outline: none;
+    font-size: 14px;
+}
+
 .members-row {
     margin-left:3px;
 }
