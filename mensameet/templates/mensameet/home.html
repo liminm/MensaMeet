@@ -5,7 +5,25 @@
 
 <div class="form-group row filter-sort-buttons">
 	<button class="collapsible collaps">Filter <i class="fa fa-filter"></i></button>
+
+	<!--
 	<button class="collapsible">Sort <i class="fa fa-sort"></i></button>
+	-->
+
+	{% if b_normal_order %}
+
+		<form action="{% url 'mensameet-home-reverse' %}">
+			<button type='submit' class="collapsible">Sort <i class="fa fa-sort"></i></button>
+		</form>
+
+	{% else %}
+
+		<form action="{% url 'mensameet-home' %}">
+			<button type='submit' class="collapsible">Sort <i class="fa fa-sort"></i></button>
+		</form>
+
+	{% endif %}
+
 </div>
 
 <div id ="allFilter" class="content">
