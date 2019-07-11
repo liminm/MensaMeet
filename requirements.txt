@@ -9,5 +9,4 @@ pytz==2019.1
 setuptools==40.8.0
 sqlparse==0.3.0
 wheel==0.33.1
-openssl==1.1.1c
-django-tempus-dominus==5.1.2.5
+pyOpenSSL==19.0.0
