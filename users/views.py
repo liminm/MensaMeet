@@ -16,6 +16,18 @@ from django.views.generic import (
 	DeleteView
 )
 
+def word2num(word):
+	number = {
+        'TWO': 2,
+        'THREE': 3,
+        'FOUR': 4,
+        'FIVE': 5,
+        'SIX': 6,
+        'SEVEN': 7,
+        'EIGHT': 8
+	}
+	return number.get(word, 8)
+
 def register(request):
 	if request.method == 'POST':
 		form = UserRegisterForm(request.POST)
@@ -50,13 +62,13 @@ def profile(request):
 		u_form = UserUpdateForm(instance=request.user)
 		p_form = ProfileUpdateForm(instance=request.user.profile)
 		t_form = TopicsUpdateForm(instance=request.user.profile)
-	
+
 	context = {
 		'u_form': u_form,
 		'p_form': p_form,
 		't_form': t_form
-		}	
-	return render(request, 'users/profile.html', context)	
+		}
+	return render(request, 'users/profile.html', context)
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
 	model = Profile
@@ -69,9 +81,9 @@ def leaveMeetup(request, pk):
 	if OurMeetup.author == OurUser:
 		if OurMeetup.members.exists():
 			OurMeetup.author = OurMeetup.members.all()[0]
-			OurMeetup.save()	
+			OurMeetup.save()
 		else:
-			OurMeetup.delete()			
+			OurMeetup.delete()
 	messages.success(request, f'You have left {OurMeetup.title}!')
 	return redirect('mensameet-home')
 
@@ -79,8 +91,11 @@ def leaveMeetup(request, pk):
 def joinMeetup(request, pk):
 	OurUser = request.user
 	OurMeetup = Meetup.objects.get(id=pk)
-	OurMeetup.members.add(OurUser)
-	messages.success(request, f'You have joined {OurMeetup.title}!')
+	if word2num(OurMeetup.members_limit) <= OurMeetup.members.count():
+		messages.warning(request, f'{OurMeetup.title} is full!')
+	else:
+		OurMeetup.members.add(OurUser)
+		messages.success(request, f'You have joined {OurMeetup.title}!')
 	return redirect('mensameet-home')
 
 @login_required
@@ -97,7 +112,7 @@ class MeetupListView(LoginRequiredMixin, ListView):
 		qs = Meetup.objects.filter(author=self.request.user)
 		return qs
 
-	template_name = 'users/ownmeetups.html'	
+	template_name = 'users/ownmeetups.html'
 	context_object_name = 'meetups'
 	ordering = ['-date_posted']
 
@@ -113,13 +128,13 @@ class MeetupCreateView(LoginRequiredMixin, CreateView):
 		form.instance.author = self.request.user
 		form.instance.save()
 		form.instance.members.add(self.request.user)
-		return super().form_valid(form)		
+		return super().form_valid(form)
 
 	def get_context_data(self, **kwargs):
 		context = super(MeetupCreateView, self).get_context_data(**kwargs)
 
 		form = MeetupCreateForm(self.request.POST or None)
-		context["form"] = form	
+		context["form"] = form
 
 		return context
 
@@ -128,7 +143,7 @@ class MeetupUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Meetup
 	fields = ['title', 'about', 'start_time', 'topics', 'members_limit', 'mensa']
 	success_url = '/mymeetups'
-	
+
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super().form_valid(form)
@@ -138,7 +153,7 @@ class MeetupUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		if self.request.user == meetup.author:
 			return True
 		return False
-		
+
 	def get_context_data(self, **kwargs):
 		context = super(MeetupUpdateView, self).get_context_data(**kwargs)
 		form = MeetupUpdateForm(instance=self.get_object())
@@ -162,7 +177,7 @@ def email(request):
 	email_from = settings.EMAIL_HOST_USER
 	recipient_list = [{{ email }},]
 	send_mail( subject, message, email_from, recipient_list)
-	return redirect('password_reset_done')			
+	return redirect('password_reset_done')
 
 class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = User
@@ -172,5 +187,4 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		User = self.get_object()
 		if self.request.user == User:
 			return True
-		return False		
-		
+		return False
