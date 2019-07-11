@@ -123,7 +123,7 @@
 <div id="eventsContainer" class="container meetups-container">
 
 	{% for meetup in meetupsAll %}
-		{% if meetup.cur_date|date:"d.m.Y" <  meetup.start_time|date:"d.m.Y"  %}
+		{% if meetup.cur_date|date:"Y-m-d" < meetup.start_time|date:"Y-m-d" %}
 			{% with meetup.members_limit as m %}
 			{% with meetup.members.all|length as l %}
 				{% if m == "TWO" and l < 2 or m == "THREE" and l < 3 or m == "FOUR" and l < 4 or m == "FIVE" and l < 5 or m == "SIX" and l < 6 or m == "SEVEN" and l < 7 or m == "EIGHT" and l < 8 %}
