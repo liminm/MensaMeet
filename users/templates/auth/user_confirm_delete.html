@@ -1,11 +1,13 @@
 {% extends 'mensameet/base_with_navigation.html' %}
 
 {% block content %}
-    <div class="content-section">
+      <div class ="card border-light rounded mb-3">
+        <div class = "card-body">
+        <div class="content-section">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Delete Profile</legend>
+                <legend class="border-bottom mb-4"></legend>
                 <h2>Are you sure you want to delete your profile?</h2>
             </fieldset>
             <div class="form-group">
@@ -13,5 +15,7 @@
                 <a class="btn btn-outline-secondary" href="{% url 'profile-detail' request.user.id %}">Cancel</a>
             </div>
         </form>
+        </div>
+      </div>
     </div>
 {% endblock content %}
