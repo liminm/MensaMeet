@@ -1,5 +1,6 @@
 {% extends 'mensameet/base_with_navigation.html' %}
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 {% block content %}
 
@@ -172,7 +173,16 @@
 			 <div class="col-md-6">
 
 				 <p class="about">{{ meetup.about }}</p>
-				 <p class="topics">Topics: {% for topic in meetup.topics.all %} {{ topic }} |{% endfor %}</p>
+
+				 <div class="row justify-content-left meetup-topics text-left"> {% for topic in meetup.topics.all %}
+					 <div class = "meetup-topic text-left">
+						  {{ topic }}
+					 </div>
+					 {% endfor %}
+					</div>
+
+
+
 				 <p class="article-content">
 					 Author: <a href={% url 'profile-detail' meetup.author.profile.id %}><img class="account-img" alt="profile picture" src="{{ meetup.author.profile.image.url }}" title={{ meetup.author.profile.user }}></a>
 
@@ -216,7 +226,7 @@
 
 
 <a href="{% url 'meetup-create' %}" class="float">
-	<div class="my-float">+</div>
+	<div class="my-float text-center"><i class="fa fa-plus"></i></div>
 </a>
 
 </div>
