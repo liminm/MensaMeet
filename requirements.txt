@@ -10,3 +10,4 @@ setuptools==40.8.0
 sqlparse==0.3.0
 wheel==0.33.1
 pyOpenSSL==19.0.0
+dj-database-url==1.2.0
