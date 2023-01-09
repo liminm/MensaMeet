@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -76,15 +77,22 @@ WSGI_APPLICATION = 'mensameet_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'NIQI0QiZi2YFcBpOx4XD',
+#         'HOST': 'containers-us-west-30.railway.app',
+#         'PORT': '6295'
+#     }
+# }
+
+
+DATABASE_URL="postgres://mensameet_user:gTKOjclO5c1GYJbhdKQVeriHs8BtyQEq@dpg-ceu9bh4gqg40d6h98tp0-a.frankfurt-postgres.render.com/mensameet"
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'NIQI0QiZi2YFcBpOx4XD',
-        'HOST': 'containers-us-west-30.railway.app',
-        'PORT': '6295'
-    }
+    #'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.parse(DATABASE_URL)
 }
 
 # Password validation

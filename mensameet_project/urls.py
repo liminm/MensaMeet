@@ -19,6 +19,8 @@ from users import views as user_views
 from mensameet import views as mensameet_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 from django.contrib.auth import views as auth_views
 
@@ -37,6 +39,8 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='users/passwordReset/password_reset_complete.html'), name='password_reset_complete'),
     path('password_reset/sendemail/', user_views.email, name='sendemail'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
