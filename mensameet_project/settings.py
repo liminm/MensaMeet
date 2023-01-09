@@ -26,7 +26,7 @@ SECRET_KEY = 'ehvt(mda+kv$cwi=v&&mr*i!$=#(hgc-z^nf3qim4iz@il0la4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
