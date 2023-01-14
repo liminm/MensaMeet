@@ -7,7 +7,10 @@ from time import strftime, gmtime
 from datetime import date
 from datetime import datetime
 
+from cloudinary.models import CloudinaryField
 
+# class Photo(models.Model):
+#     image = CloudinaryField('image')
 
 class Topic(models.Model):
     title = models.CharField(max_length=100)
@@ -17,7 +20,9 @@ class Topic(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to='mensameet/static')
+    #image = models.ImageField(default='default.jpg', upload_to='mensameet/static')
+    image = CloudinaryField('image')
+
     gender = models.CharField(max_length=50, blank=True)
     about = models.TextField(blank=True, null=True)
     topics = models.ManyToManyField(Topic, related_name="owners")
@@ -28,11 +33,11 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         super(Profile ,self).save(*args, **kwargs)
 
-        img = Image.open(self.image.path)
-        if img.height > 500 or img.width > 500:
-            output_size = (500, 500)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+        # img = Image.open(self.image.path)
+        # if img.height > 500 or img.width > 500:
+        #     output_size = (500, 500)
+        #     img.thumbnail(output_size)
+        #     img.save(self.image.path)
 
 class Mensa(models.Model):
     title = models.CharField(max_length=100)
