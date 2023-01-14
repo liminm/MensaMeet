@@ -179,6 +179,28 @@ def email(request):
 	send_mail( subject, message, email_from, recipient_list)
 	return redirect('password_reset_done')
 
+# #TODO
+# class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+# 	model = User
+# 	success_url = 'profile-detail'
+
+# 	def test_func(self):
+# 		User = self.get_object()
+# 		if self.request.user == User:
+# 			return True
+# 		return False
+
+# class ProfileDetailView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+# 	model = User
+# 	success_url = 'profile-detail'
+
+# 	def test_func(self):
+# 		User = self.get_object()
+# 		if self.request.user == User:
+# 			return True
+# 		return False
+
+
 class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = User
 	success_url = '/login'
