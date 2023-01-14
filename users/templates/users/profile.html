@@ -7,7 +7,7 @@
         <div class="col-sm-4 card card-style-in h-50">
             <div class="card-body">
                         <div class="profile-username">
-                            <!-- <img class="rounded-circle profile-img" alt="profile picture" src="{{ user.profile.image.url }}"> -->
+                            <img class="rounded-circle profile-img" alt="profile picture" src="{{ user.profile.image.url }}">
                             <h1 class="account-heading">{{ user.username }}</h1>
                         </div>
                         <div class="profile-about">
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <!-- <div class=" col-sm-7 card card-style-in">
+        <div class=" col-sm-7 card card-style-in">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <br>
@@ -44,7 +44,7 @@
             <div class="form-group ">
                 <button class="btn btn-outline-danger" type="submit"><a href="{% url 'profile-delete' request.user.id %}">Delete Account</a></button>
             </div>
-        </div> -->
+        </div>
 
     </div>
 {% endblock content %}
