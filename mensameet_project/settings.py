@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import dj_database_url
-#import cloudinary_storage
+import cloudinary_storage
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloudinary',
-    #'cloudinary_storage',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [

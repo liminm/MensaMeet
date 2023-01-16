@@ -1,0 +1,4 @@
+env/
+media/mensameet/static/
+users/migrations/
+users/__pycache__/
