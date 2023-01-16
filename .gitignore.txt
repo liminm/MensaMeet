@@ -4,3 +4,5 @@ users/migrations/
 users/__pycache__/
 mensameet/migrations/
 mensameet/__pycache__/
+__pycache__
+migrations
