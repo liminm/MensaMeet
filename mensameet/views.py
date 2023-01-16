@@ -3,7 +3,7 @@ from django.contrib import messages
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TopicsUpdateForm, MeetupCreateForm, MeetupUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from users.models import Meetup, Topic
+from users.models import Meetup, Topic, Mensa
 from django.views.generic import (
 	TemplateView,
 	ListView,
@@ -24,9 +24,14 @@ class MeetupListViewAll(LoginRequiredMixin, ListView):
 		qs = Meetup.objects.all().order_by('start_time')
 		return qs
 
+
 	def get_context_data(self, **kwargs):
 		context = super(MeetupListViewAll, self).get_context_data(**kwargs)
+		context.update({'topicsAll': Topic.objects.all().order_by('title'),
+			'mensaAll': Mensa.objects.all().order_by('title'),
+        	})
 		context['b_normal_order'] = True
+
 		return context
 
 	template_name = 'mensameet/home.html'	
@@ -42,9 +47,12 @@ class MeetupListViewAllReverse(LoginRequiredMixin, ListView):
 
 	def get_context_data(self, **kwargs):
 		context = super(MeetupListViewAllReverse, self).get_context_data(**kwargs)
-		context['b_normal_order'] = False
+		context.update({'topicsAll': Topic.objects.all().order_by('title'),
+			'mensaAll': Mensa.objects.all().order_by('title'),
+        	})
+		context['b_normal_order'] = True
+
 		return context
 
 	template_name = 'mensameet/home.html'	
 	context_object_name = 'meetupsAll'
-

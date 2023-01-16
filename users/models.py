@@ -9,11 +9,9 @@ from datetime import datetime
 
 from cloudinary.models import CloudinaryField
 
-# class Photo(models.Model):
-#     image = CloudinaryField('image')
 
 class Topic(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=30)
 
     def __str__(self):
         return self.title
@@ -47,7 +45,7 @@ class Mensa(models.Model):
         return self.title
 
 class Meetup(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=50)
     about = models.TextField(blank=True, null=True)
 
     date_posted = models.DateTimeField(default = timezone.now)

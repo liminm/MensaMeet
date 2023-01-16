@@ -33,50 +33,20 @@
 			<div class="row">
 				<div id="topics-filter-div" class="form-group">
 					<label for="topics-filter">Topics</label><br>
+
+
 					<select id="topics-filter" data-width="400"  class="selectpicker" multiple data-live-search="true" >
-						<option>Architecture</option>
-						<option>Art</option>
-						<option>Astrology</option>
-						<option>Astronomy</option>
-						<option>Books</option>
-						<option>Business</option>
-						<option>Cars</option>
-						<option>Culture</option>
-						<option>Computer Science</option>
-						<option>Dancing</option>
-						<option>Design</option>
-						<option>Education</option>
-						<option>Fashion</option>
-						<option>Feminism</option>
-						<option>Finance</option>
-						<option>Fitness</option>
-						<option>Food</option>
-						<option>Future</option>
-						<option>Gaming</option>
-						<option>History</option>
-						<option>Ideas</option>
-						<option>Law</option>
-						<option>Life</option>
-						<option>LGBTQ</option>
-						<option>Movies</option>
-						<option>Music</option>
-						<option>Nature</option>
-						<option>News</option>
-						<option>Parenting</option>
-						<option>Philosophy</option>
-						<option>Photography</option>
-						<option>Politics</option>
-						<option>Psychologie</option>
-						<option>Relationships</option>
-						<option>Religion</option>
-						<option>Science</option>
-						<option>Sex</option>
-						<option>Sports</option>
-						<option>Technology</option>
-						<option>Theatre</option>
-						<option>TV and Series</option>
-						<option>Vegan</option>
-						<option>Writing</option>
+						{%block topicsblock %}
+							{% if topicsAll %}
+							{% for topic in topicsAll %}
+								<option>{{topic}}</option>
+
+							{% endfor %}
+							{%else%}
+								<option>No topics available.</option>
+							{%endif%}
+						{% endblock %}
+
 					</select>
 				</div>
 
@@ -89,6 +59,9 @@
 						<option data-filter-value="FOUR">4</option>
 						<option data-filter-value="FIVE">5</option>
 						<option data-filter-value="SIX">6</option>
+						<option data-filter-value="SEVEN">7</option>
+						<option data-filter-value="EIGHT">8</option>
+
 					</select>
 				</div>
 
@@ -97,14 +70,24 @@
 					<label for="mensa-filter">Mensa</label><br>
 					<select id="mensa-filter" class="selectpicker">
 						<option >Show All</option>
-						<option >TU Hardenbergerstrasse</option>
+						{%block mensablock %}
+
+							{% if mensaAll %}
+							{% for mensa in mensaAll %}
+								<option>{{mensa}}</option>
+							{% endfor %}
+							{% endif %}
+
+						{% endblock %}
+
+						<!-- <option >TU Hardenbergerstrasse</option>
 						<option >Mensa TU "Skyline"</option>
 						<option >Veggie Mensa</option>
 						<option >Mensa TU Marchstraße</option>
 						<option >Mensa TU Architektur</option>
 						<option >Mathe Café</option>
 						<option >Personalkantine</option>
-						<option >Cafeteria EN</option>
+						<option >Cafeteria EN</option> -->
 					</select>
 				</div>
 
