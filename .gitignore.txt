@@ -2,3 +2,5 @@ env/
 media/mensameet/static/
 users/migrations/
 users/__pycache__/
+mensameet/migrations/
+mensameet/__pycache__/
