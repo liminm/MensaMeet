@@ -49,6 +49,9 @@
                      <div class="col-md-12 text-center ">
                         <button type="submit" class=" btn btn-block btn-secondary submit-btn">LOGIN</button>
                      </div><br>
+                     <div class="col-md-12 text-center ">
+                        <a class=" btn btn-block btn-secondary text-white submit-btn" href="{% url 'mensameet-home-guest' %}" role="button">GUEST VIEW</a>
+                     </div><br>
                      <div class="form-group">
                         <p class="text-center">No account yet? <a href="{% url 'mensameet-register' %}" id="signup">Register now!</a></p>
                      </div>
@@ -56,6 +59,7 @@
                   <div class="form-group">
                      <p class="text-center"><a href="{% url 'password_reset' %}">Forgot Password?</a></p>  
                   </div><br>
+                  
             </div>
       </div>
 </div>
