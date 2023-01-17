@@ -20,6 +20,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     #image = models.ImageField(default='default.jpg', upload_to='mensameet/static')
     image = CloudinaryField('image')
+    is_active = models.BooleanField(default=False)
 
     gender = models.CharField(max_length=50, blank=True)
     about = models.TextField(blank=True, null=True)

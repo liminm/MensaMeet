@@ -10,12 +10,12 @@ class UserRegisterForm(UserCreationForm):
 	def __init__(self, *args, **kwargs):
 		super(UserRegisterForm, self).__init__(*args, **kwargs)
 
-		for fieldname in ['username', "email", 'password1', 'password2']:
+		for fieldname in ['username', "email", 'password1', 'password2', 'is_active']:
 			self.fields[fieldname].help_text = None
 
 	class Meta:
 		model = User
-		fields = ['username', 'email', 'password1', 'password2']
+		fields = ['username', 'email', 'password1', 'password2', 'is_active']
 
 class UserUpdateForm(forms.ModelForm):
 	email = forms.EmailField()

@@ -37,13 +37,17 @@ def register(request):
 			post.username = form.cleaned_data['username']
 			post.password1 = form.cleaned_data['password1']
 			post.password2 = form.cleaned_data['password2']
-
+			post.is_active = False
 			post.save()
-			messages.success(request, 'Account successfully created')
+			activateEmail(request, form.cleaned_data['username'], form.cleaned_data['email'])
 			return redirect('mensameet-home')
 	else:
 		form = UserRegisterForm()
 	return render(request, 'users/register.html', {'form' : form })
+
+def activateEmail(request, user, to_email):
+	messages.success(request, f'Dear {user}, please confirm your account and complete the registration by clicking on the activation link sent to {to_email}.')
+#\033[1m{user}\033[0m 
 
 @login_required
 def profile(request):

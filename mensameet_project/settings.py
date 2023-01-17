@@ -168,12 +168,14 @@ LOGIN_URL = 'mensameet-login'
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR +  "/sent_emails"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'kawhiindamensa@gmail.com'
-EMAIL_HOST_PASSWORD = 'mensakerem111'
-DEFAULT_FROM_EMAIL = 'MensaMeet Team <noreply@example.com>'
+EMAIL_HOST_USER = 'mensameet.project@gmail.com'
+EMAIL_HOST_PASSWORD = 'itlzfibbcioypsnt'
+DEFAULT_FROM_EMAIL = 'MensaMeet Team <mensameet.project@gmail.com>'
 
-
+#itlzfibbcioypsnt
 
