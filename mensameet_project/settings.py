@@ -177,5 +177,4 @@ EMAIL_HOST_USER = 'mensameet.project@gmail.com'
 EMAIL_HOST_PASSWORD = 'itlzfibbcioypsnt'
 DEFAULT_FROM_EMAIL = 'MensaMeet Team <mensameet.project@gmail.com>'
 
-#itlzfibbcioypsnt
 

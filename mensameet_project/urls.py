@@ -29,6 +29,8 @@ urlpatterns = [
     #path('', mensameet_views.home, name='mensameet-home'),
     path('', include('mensameet.urls')),
 	path('register/', user_views.register, name='mensameet-register'),
+    path('activate/<uidb64>/<token>', user_views.activate, name='activate'),
+
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='mensameet-login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='mensameet-logout'),
     path('profile/edit/', user_views.profile_edit, name='profile-edit'),

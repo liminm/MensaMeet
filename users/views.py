@@ -1,12 +1,25 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate, get_user_model
+
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TopicsUpdateForm, MeetupCreateForm, MeetupUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.utils.encoding import force_str
+
+from django.core.mail import EmailMessage
+
+
 import os
 from .models import Meetup, Topic, Profile, User
+from .tokens import account_activation_token
 from django.views.generic import (
 	TemplateView,
 	ListView,
@@ -32,22 +45,53 @@ def register(request):
 	if request.method == 'POST':
 		form = UserRegisterForm(request.POST)
 		if form.is_valid():
-			post = form.save(commit=False)
-			post.email = form.cleaned_data['email']
-			post.username = form.cleaned_data['username']
-			post.password1 = form.cleaned_data['password1']
-			post.password2 = form.cleaned_data['password2']
-			post.is_active = False
-			post.save()
-			activateEmail(request, form.cleaned_data['username'], form.cleaned_data['email'])
+			user = form.save(commit=False)
+			user.email = form.cleaned_data['email']
+			user.username = form.cleaned_data['username']
+			user.password1 = form.cleaned_data['password1']
+			user.password2 = form.cleaned_data['password2']
+			user.is_active = False
+			user.save()
+			activateEmail(request, user, form.cleaned_data['email'])
 			return redirect('mensameet-home')
 	else:
 		form = UserRegisterForm()
 	return render(request, 'users/register.html', {'form' : form })
 
+def activate(request, uidb64, token):
+	User = get_user_model()
+	try:
+		uid = force_str(urlsafe_base64_decode(uidb64))
+		user = User.objects.get(pk=uid)
+	except:
+		user = None
+
+	if user is not None and account_activation_token.check_token(user,token):
+		user.is_active = True
+		user.save()
+
+		messages.success(request, "Thank you for your email confirmation. Now you can login into your account.")
+		return redirect('mensameet-login')
+	else:
+		messages.error(request, "Activation link is invalid!")
+
+	return redirect('mensameet-login')
+
+
 def activateEmail(request, user, to_email):
-	messages.success(request, f'Dear {user}, please confirm your account and complete the registration by clicking on the activation link sent to {to_email}.')
-#\033[1m{user}\033[0m 
+	mail_subject = "Activate your user account at MensaMeet."
+	message = render_to_string('auth/activate_account.html', {
+		'user': user,
+		'domain': get_current_site(request).domain,
+		'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+		'token': account_activation_token.make_token(user),
+		'protocol':'https' if request.is_secure() else 'http'
+	})
+	email = EmailMessage(mail_subject, message, to=[to_email] )
+	if email.send():
+		messages.success(request, f'Dear {user}, please confirm your account and complete the registration by clicking on the activation link sent to {to_email}.')
+	else:
+		messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
 
 @login_required
 def profile(request):
