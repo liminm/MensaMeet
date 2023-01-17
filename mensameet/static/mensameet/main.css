@@ -299,3 +299,8 @@ main {
 .members-row {
     margin-left:3px;
 }
+
+.task-list-row {
+	border-radius: 50px;
+
+}

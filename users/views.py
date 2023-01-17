@@ -45,9 +45,24 @@ def register(request):
 		form = UserRegisterForm()
 	return render(request, 'users/register.html', {'form' : form })
 
-
 @login_required
 def profile(request):
+
+	u_form = UserUpdateForm(instance=request.user)
+	p_form = ProfileUpdateForm(instance=request.user.profile)
+	t_form = TopicsUpdateForm(instance=request.user.profile)
+
+	context = {
+		'u_form': u_form,
+		'p_form': p_form,
+		't_form': t_form
+		}
+	return render(request, 'users/profile.html', context)
+
+
+
+@login_required
+def profile_edit(request):
 	if request.method == 'POST':
 		u_form = UserUpdateForm(request.POST, instance=request.user)
 		p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -68,7 +83,7 @@ def profile(request):
 		'p_form': p_form,
 		't_form': t_form
 		}
-	return render(request, 'users/profile.html', context)
+	return render(request, 'users/profile_edit.html', context)
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
 	model = Profile

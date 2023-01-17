@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <!-- <div class=" col-sm-7 card card-style-in">
+        <div class=" col-sm-7 card card-style-in">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <br>
@@ -37,14 +37,16 @@
                     {{ p_form|crispy }}
                     {{ t_form|crispy }}
                 </fieldset>
-                <div class="form-group ">
-                    <button class="btn btn-secondary " type="submit">Update</button>
+                <div class="col-sm">
+                    <div class="form-group ">
+                        <button class="btn btn-secondary float-left " type="submit">Update</button>
+                        <a class="btn btn-primary text-white " href="{% url 'profile' %}">Cancel</a>
+                        <button class="btn btn-outline-danger float-right" type="submit"><a  href="{% url 'profile-delete' request.user.id %}">Delete Account</a></button>
+                    </div>
                 </div>
+
             </form>
-            <div class="form-group ">
-                <button class="btn btn-outline-danger" type="submit"><a href="{% url 'profile-delete' request.user.id %}">Delete Account</a></button>
-            </div>
-        </div> -->
+        </div>
 
     </div>
 {% endblock content %}
