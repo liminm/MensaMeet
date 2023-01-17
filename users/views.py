@@ -50,7 +50,7 @@ def register(request):
 			user.username = form.cleaned_data['username']
 			user.password1 = form.cleaned_data['password1']
 			user.password2 = form.cleaned_data['password2']
-			user.is_active = False
+			user.is_active = True
 			user.save()
 			activateEmail(request, user, form.cleaned_data['email'])
 			return redirect('mensameet-home')
