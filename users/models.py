@@ -22,6 +22,7 @@ class Profile(models.Model):
     image = CloudinaryField('image')
     is_active = models.BooleanField(default=False)
 
+    email = models.EmailField(unique=True)
     gender = models.CharField(max_length=50, blank=True)
     about = models.TextField(blank=True, null=True)
     topics = models.ManyToManyField(Topic, related_name="owners")

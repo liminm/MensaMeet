@@ -5,13 +5,22 @@ from .models import Meetup, Topic, Profile
 
 
 class UserRegisterForm(UserCreationForm):
-	email = forms.EmailField()
+	email = forms.EmailField(required=True)
 
 	def __init__(self, *args, **kwargs):
 		super(UserRegisterForm, self).__init__(*args, **kwargs)
 
-		for fieldname in ['username', "email", 'password1', 'password2', 'is_active']:
-			self.fields[fieldname].help_text = None
+
+
+	def clean_email(self):
+		email = self.cleaned_data.get('email', '')
+		if User.objects.filter(email=email).exists():
+			raise forms.ValidationError('This email address is already in use.'
+											'\nPlease use a different email address.')
+		else:
+			for fieldname in ['username', "email", 'password1', 'password2', 'is_active']:
+				self.fields[fieldname].help_text = None
+
 
 	class Meta:
 		model = User
