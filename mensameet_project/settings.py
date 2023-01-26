@@ -174,7 +174,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mensameet.project@gmail.com'
-EMAIL_HOST_PASSWORD = 'itlzfibbcioypsnt'
+EMAIL_HOST_PASSWORD = 'fsxiewkrnfymdpia'
 DEFAULT_FROM_EMAIL = 'MensaMeet Team <mensameet.project@gmail.com>'
 
 

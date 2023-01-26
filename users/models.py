@@ -20,9 +20,9 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     #image = models.ImageField(default='default.jpg', upload_to='mensameet/static')
     image = CloudinaryField('image')
-    is_active = models.BooleanField(default=False)
+    #is_active = models.BooleanField(default=False)
 
-    email = models.EmailField(unique=True)
+    #email = models.EmailField(unique=True)
     gender = models.CharField(max_length=50, blank=True)
     about = models.TextField(blank=True, null=True)
     topics = models.ManyToManyField(Topic, related_name="owners")
