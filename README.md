@@ -1,6 +1,6 @@
 # MensaMeet
 
-Best Mensa app ever!
+Mensa application to find likeminded people to go to the cafeteria with.
 
 ## Getting Started
 
@@ -66,9 +66,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Milan Szoszkiewicz** - *Initial work* - [szoszk](https://github.com/szoszk)
-
-See also the list of [contributors](https://github.com/szoszk/MensaMeet/graphs/contributors) who participated in this project.
+* **Mia Szoszkiewicz** - *Initial work* - [szoszk](https://github.com/szoszk)
+Ahmet Kerem Aksoy
+Vesela Stefanova
+Todor Moskov
+Limin Malek
 
 ## License
 
