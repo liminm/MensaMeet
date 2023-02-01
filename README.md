@@ -57,8 +57,8 @@ Add additional notes about how to deploy this on a live system
 ## Built With
 
 * [Django](https://www.djangoproject.com/) - Backend Framework
-* [Bootstrap] (https://getbootstrap.com/) - Frontend CSS framework
-* [PostgreSQL] (https://www.postgresql.org/) - Database
+* [Bootstrap](https://getbootstrap.com/) - Frontend CSS framework
+* [PostgreSQL](https://www.postgresql.org/) - Database
 
 ## Authors
 
