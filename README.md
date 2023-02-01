@@ -33,26 +33,30 @@ Also see the [requirements.txt](https://github.com/liminm/MensaMeet/blob/master/
 
 A step by step series of examples that tell you how to get a development env running
 
-
-
-Say what the step will be
+1. Download the repository and open it in your code editor of choice.
+2. Create a virtual environment by writing in your Bash command shell or the alternative Powershell command.
+```
+    python -m venv /path/to/new/virtual/environment
+```
+3. On a Unix system activate the virtual environment by typing in the terminal depending on the directory in which you created the virtual environment:
+```
+source /path/to/venv/bin/activate
+```
+Alternatively for Windows use:
+```
+path\to\venv\Scripts\activate.bat
+```
+4. Install the required packages from requirements.txt by running the following command in your terminal from the project home directory:
+```
+pip install -r requirements.txt
+```
+5. Run manage.py runserver from the project home directory.
 
 ```
-Give the example
+manage.py runserver
 ```
+6. Click on the link shown to you in the terminal after running the previous step.
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
