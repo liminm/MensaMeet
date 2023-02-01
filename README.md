@@ -8,14 +8,32 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-See the [requirements.txt](https://github.com/liminm/MensaMeet/blob/master/requirements.txt).
 ```
+certifi==2019.6.16
+Django==2.2.3
+django-crispy-forms==1.7.2
+gunicorn==19.9.0
+Pillow==6.0.0
+pip==19.0.3
+psycopg2==2.8.2
+pytz==2019.1
+setuptools==40.8.0
+sqlparse==0.3.0
+wheel==0.33.1
+pyOpenSSL==19.0.0
+dj-database-url==1.2.0
+cloudinary==1.31.0
+django-cloudinary-storage==0.3.0
+six==1.16.0
+```
+Also see the [requirements.txt](https://github.com/liminm/MensaMeet/blob/master/requirements.txt).
 
-```
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
+
+
 
 Say what the step will be
 
@@ -31,25 +49,6 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
@@ -57,19 +56,17 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Django](https://www.djangoproject.com/) - The web framework used
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/szoszk/MensaMeet/tags). 
+* [Django](https://www.djangoproject.com/) - Backend Framework
+* [Bootstrap] (https://getbootstrap.com/) - Frontend CSS framework
+* [PostgreSQL] (https://www.postgresql.org/) - Database
 
 ## Authors
 
-* **Mia Szoszkiewicz** - *Initial work* - [szoszk](https://github.com/szoszk)
-Ahmet Kerem Aksoy
-Vesela Stefanova
-Todor Moskov
-Limin Malek
+**Mia Szoszkiewicz**
+**Ahmet Kerem Aksoy**
+**Vesela Stefanova**
+**Todor Moskov**
+**Limin Malek**
 
 ## License
 
