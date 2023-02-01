@@ -66,11 +66,11 @@ manage.py runserver
 
 ## Authors
 
-**Mia Szoszkiewicz**
-**Ahmet Kerem Aksoy**
-**Vesela Stefanova**
-**Todor Moskov**
-**Limin Malek**
+**Mia Szoszkiewicz**  
+**Ahmet Kerem Aksoy**  
+**Vesela Stefanova**  
+**Todor Moskov**  
+**Limin Malek**  
 
 ## License
 
