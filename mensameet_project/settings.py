@@ -94,8 +94,7 @@ WSGI_APPLICATION = 'mensameet_project.wsgi.application'
 #     }
 # }
 
-
-DATABASE_URL="postgres://mensameet_user:gTKOjclO5c1GYJbhdKQVeriHs8BtyQEq@dpg-ceu9bh4gqg40d6h98tp0-a.frankfurt-postgres.render.com/mensameet"
+DATABASE_URL="postgres://mensameet_user:cZ4DQUIt4OQdbWVrycchcayl6wD4ity7@dpg-cpb29ted3nmc73bedt30-a.frankfurt-postgres.render.com/mensameet_8i2r"
 DATABASES = {
     #'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     'default': dj_database_url.parse(DATABASE_URL)
