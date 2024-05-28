@@ -94,6 +94,9 @@ WSGI_APPLICATION = 'mensameet_project.wsgi.application'
 #     }
 # }
 
+TIME_ZONE = 'UTC'
+
+
 DATABASE_URL="postgres://mensameet_user:cZ4DQUIt4OQdbWVrycchcayl6wD4ity7@dpg-cpb29ted3nmc73bedt30-a.frankfurt-postgres.render.com/mensameet_8i2r"
 DATABASES = {
     #'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
@@ -130,7 +133,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
