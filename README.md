@@ -1,6 +1,6 @@
 # MensaMeet
 
-Mensa application to find likeminded people to go to the cafeteria with.
+Mensa application to find like-minded people to go to the cafeteria with.
 
 ## Getting Started
 
