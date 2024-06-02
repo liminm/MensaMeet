@@ -69,6 +69,13 @@ class TopicsUpdateForm(forms.ModelForm):
 		required=False
 	)
 	'''
+	topics = forms.ModelMultipleChoiceField(
+		queryset=Topic.objects.all(),
+		widget=forms.CheckboxSelectMultiple,
+		required=False
+	)	
+
+
 	class Meta:
 		model = Profile
 		fields = ['topics']

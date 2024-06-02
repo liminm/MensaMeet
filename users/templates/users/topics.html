@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Topics</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .topic-card {
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .topic-card.selected {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Select Topics</h2>
+        <form id="topicsForm">
+            <div class="row">
+                <div class="col-sm-3 mb-3">
+                    <div class="card topic-card" data-topic-id="1">
+                        <div class="card-body text-center">
+                            Topic 1
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 mb-3">
+                    <div class="card topic-card" data-topic-id="2">
+                        <div class="card-body text-center">
+                            Topic 2
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more topics -->
+            </div>
+            <div class="form-group d-flex justify-content-between mt-4">
+                <button class="btn btn-primary" type="button" onclick="submitForm()">Save Selection</button>
+                <button class="btn btn-secondary" type="button" onclick="resetSelection()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const topicCards = document.querySelectorAll('.topic-card');
+            topicCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    card.classList.toggle('selected');
+                });
+            });
+        });
+
+        function submitForm() {
+            const selectedTopics = [];
+            document.querySelectorAll('.topic-card.selected').forEach(card => {
+                selectedTopics.push(card.getAttribute('data-topic-id'));
+            });
+            alert('Selected topics: ' + selectedTopics.join(', '));
+            // Here you can handle the selected topics, e.g., send them to a server
+        }
+
+        function resetSelection() {
+            document.querySelectorAll('.topic-card.selected').forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+    </script>
+</body>
+</html>
